@@ -30,6 +30,20 @@
 
 #include <QtMath>
 
+Qt3DExtras::QCylinderMesh *modelMesh;
+Qt3DExtras::QCylinderMesh *bodyMesh;
+
+Qt3DCore::QTransform *bodyTransform;
+Qt3DCore::QTransform *leftForearmTransform;
+Qt3DCore::QTransform *leftArmTransform;
+Qt3DCore::QTransform *leftThighTransform;
+Qt3DCore::QTransform *leftLegTransform;
+Qt3DCore::QTransform *rightForearmTransform;
+Qt3DCore::QTransform *rightArmTransform;
+Qt3DCore::QTransform *rightThighTransform;
+Qt3DCore::QTransform *rightLegTransform;
+Qt3DCore::QTransform *headTransform;
+
 void setAxis(Qt3DCore::QEntity *sceneRoot)
 {
     Qt3DExtras::QCylinderMesh *axisX = new Qt3DExtras::QCylinderMesh();
@@ -71,6 +85,88 @@ void setAxis(Qt3DCore::QEntity *sceneRoot)
     axisZEntity->addComponent(axisZtransform);
 }
 
+QMatrix4x4 GetTranslationMatrix(float x, float y, float z)
+{
+    return QMatrix4x4(1,0,0,x
+                      ,0,1,0,y
+                      ,0,0,1,z
+                      ,0,0,0,1);
+}
+
+void CreateModel(Qt3DCore::QEntity *sceneRoot)
+{
+    bodyMesh = new Qt3DExtras::QCylinderMesh();
+    bodyMesh->setRadius(0.1f);
+    bodyMesh->setLength(6);
+    bodyMesh->setRings(100);
+    bodyMesh->setSlices(20);
+
+    modelMesh = new Qt3DExtras::QCylinderMesh();
+    modelMesh->setRadius(0.1f);
+    modelMesh->setLength(3);
+    modelMesh->setRings(10);
+    modelMesh->setSlices(20);
+
+    bodyTransform = new Qt3DCore::QTransform();
+    leftForearmTransform = new Qt3DCore::QTransform();
+    leftArmTransform = new Qt3DCore::QTransform();
+    leftThighTransform = new Qt3DCore::QTransform();
+    leftLegTransform = new Qt3DCore::QTransform();
+    rightForearmTransform = new Qt3DCore::QTransform();
+    rightArmTransform = new Qt3DCore::QTransform();
+    rightThighTransform = new Qt3DCore::QTransform();
+    rightLegTransform = new Qt3DCore::QTransform();
+    headTransform = new Qt3DCore::QTransform();
+
+    //x, y, z
+    QVector3D offsetT = QVector3D(-1.5, 0, 0);
+    QVector3D lfT = QVector3D(0,3,0);
+    QVector3D laOffsetT = QVector3D(-3,0,0);
+
+    QMatrix4x4 lfTM = GetTranslationMatrix(lfT.x(), lfT.y(), lfT.z());
+    QMatrix4x4 laOffsetTM = GetTranslationMatrix(laOffsetT.x(), laOffsetT.y(), laOffsetT.z());
+    QMatrix4x4 offsetTM = GetTranslationMatrix(offsetT.x(), offsetT.y(), offsetT.z());
+
+    QMatrix4x4 offsetRM = QMatrix4x4(QQuaternion::fromAxisAndAngle(0,0,1,90).toRotationMatrix());
+    QMatrix4x4 lfRM = QMatrix4x4(QQuaternion::fromAxisAndAngle(0,1,0,20).toRotationMatrix());
+    QMatrix4x4 laRM = QMatrix4x4(QQuaternion::fromAxisAndAngle(0,0,1,10).toRotationMatrix());
+
+    leftForearmTransform->setMatrix(lfTM*lfRM*offsetTM*offsetRM);
+    leftArmTransform->setMatrix(lfTM*lfRM*laOffsetTM*laRM*lfRM.inverted()*offsetTM*offsetRM);
+
+
+
+
+
+
+
+
+
+    Qt3DExtras::QPhongMaterial *modelMaterial = new Qt3DExtras::QPhongMaterial();
+    modelMaterial->setDiffuse(QColor(QRgb(0x00FF00)));
+
+    Qt3DCore::QEntity *bodyEntity = new Qt3DCore::QEntity(sceneRoot);
+    bodyEntity = new Qt3DCore::QEntity(bodyEntity);
+    bodyEntity->addComponent(modelMesh);
+    bodyEntity->addComponent(modelMaterial);
+    bodyEntity->addComponent(leftForearmTransform);
+
+
+    // Cylinder
+    Qt3DCore::QEntity *leftForearmEntity = new Qt3DCore::QEntity(sceneRoot);
+    leftForearmEntity = new Qt3DCore::QEntity(leftForearmEntity);
+    leftForearmEntity->addComponent(bodyMesh);
+    leftForearmEntity->addComponent(modelMaterial);
+    leftForearmEntity->addComponent(bodyTransform);
+    //m_cylinderEntity->setParent(bodyEntity);
+
+    Qt3DCore::QEntity *leftArmEntity = new Qt3DCore::QEntity(sceneRoot);
+    leftArmEntity = new Qt3DCore::QEntity(leftArmEntity);
+    leftArmEntity->addComponent(modelMesh);
+    leftArmEntity->addComponent(modelMaterial);
+    leftArmEntity->addComponent(leftArmTransform);
+}
+
 int main(int argc, char* argv[])
 {
     QGuiApplication app(argc, argv);
@@ -91,71 +187,72 @@ int main(int argc, char* argv[])
     camController->setCamera(basicCamera);
 
     // Cylinder shape data
-    Qt3DExtras::QCylinderMesh *cylinder = new Qt3DExtras::QCylinderMesh();
-    cylinder->setRadius(0.5f);
-    cylinder->setLength(3);
-    cylinder->setRings(100);
-    cylinder->setSlices(20);
+//    Qt3DExtras::QCylinderMesh *cylinder = new Qt3DExtras::QCylinderMesh();
+//    cylinder->setRadius(0.5f);
+//    cylinder->setLength(3);
+//    cylinder->setRings(100);
+//    cylinder->setSlices(20);
 
-    Qt3DExtras::QCylinderMesh *cylinder2 = new Qt3DExtras::QCylinderMesh();
-    cylinder2->setRadius(0.5f);
-    cylinder2->setLength(3);
-    cylinder2->setRings(100);
-    cylinder2->setSlices(20);
+//    Qt3DExtras::QCylinderMesh *cylinder2 = new Qt3DExtras::QCylinderMesh();
+//    cylinder2->setRadius(0.5f);
+//    cylinder2->setLength(3);
+//    cylinder2->setRings(100);
+//    cylinder2->setSlices(20);
 
-    //evtl. auch mit quaternion rotieren, die rotation auf einen punkt anwenden, dann verschieben
+//    Qt3DCore::QTransform *cylinderTransform = new Qt3DCore::QTransform();
+//    QVector3D translation = QVector3D(3,0,0);
+//    QMatrix4x4 translationMatrix = QMatrix4x4(1,0,0,translation.x()
+//                                             ,0,1,0,translation.y()
+//                                             ,0,0,1,translation.z()
+//                                             ,0,0,0,1);
 
-    Qt3DCore::QTransform *cylinderTransform = new Qt3DCore::QTransform();
-    //cylinderTransform->setScale(1.5f);
-    QVector3D armShoulder = QVector3D(0, cylinder->length()/2,0);
-    QVector3D armForearm = QVector3D(0,-1 * cylinder->length()/2, 0);
-    QMatrix4x4 armRotation = cylinderTransform->rotateAround(armShoulder, 90, QVector3D(0,0,1));
-    cylinderTransform->setMatrix(armRotation);
+//    //3x3 Matrix will automatically converted to 4x4
+//    QMatrix4x4 rotationMatrix = QMatrix4x4(QQuaternion::fromAxisAndAngle(0,0,1,90).toRotationMatrix());
+//    cylinderTransform->setMatrix(rotationMatrix*translationMatrix);
 
-    armForearm = armRotation * armForearm;
+//    Qt3DCore::QTransform *cylinderTransform2 = new Qt3DCore::QTransform();
+//    QVector3D translation2 = QVector3D(10,10,10);
+//    QMatrix4x4 translationMatrix2 = QMatrix4x4(1,0,0,translation2.x()
+//                                             ,0,1,0,translation2.y()
+//                                             ,0,0,1,translation2.z()
+//                                             ,0,0,0,1);
 
-    Qt3DCore::QTransform *cylinder2Transform = new Qt3DCore::QTransform();
-    QVector3D test = QVector3D(0,cylinder->length()/2,0);
-    //QMatrix4x4 forearmRotation = cylinderTransform->rotateAround(test, -90, QVector3D(0,0,1));
-    cylinder2Transform->setRotation(QQuaternion::fromAxisAndAngle(0,0,1,-45));
-    QMatrix3x3 rotationBasic = cylinder2Transform->rotation().toRotationMatrix();
-    //QMatrix4x4 translationBasic = QMatrix4x4(1,0,0,armForearm.x()
-       //                                      ,0,1,0,armForearm.y()
-         //                                    ,0,0,1,armForearm.z()
-         //                                    ,0,0,0,1);
-
-
-    QMatrix4x4 rotationBasicPlus = QMatrix4x4(rotationBasic);
-    test = rotationBasicPlus * test;
-    cylinder2Transform->setTranslation(armForearm+test);
-    //QMatrix4x4 matrix = QMatrix4x4(1,0,0,0,0,qCos())
-    //cylinder2Transform->setMatrix(translationBasic*rotationBasicPlus);
+//    //3x3 Matrix will automatically converted to 4x4
+//    QMatrix4x4 rotationMatrix2 = QMatrix4x4(QQuaternion::fromAxisAndAngle(0,0,1,0).toRotationMatrix());
+//    cylinderTransform2->setMatrix(rotationMatrix2*translationMatrix2);
 
 
-    //qDebug() <<  armForearm.x() + " " + armForearm.y() + " " + armForearm.z();
-    //cylinderTransform->setTranslation(QVector3D(5,5,5));
-    //cylinderTransform->setTranslation(QVector3D(cylinder->length()/2, 0, 0));
-    //cylinderTransform->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0f, 0.0f, 1.0f), 45.0f));
+
+//    Qt3DExtras::QPhongMaterial *cylinderMaterial = new Qt3DExtras::QPhongMaterial();
+//    cylinderMaterial->setDiffuse(QColor(QRgb(0x928327)));
 
 
-    Qt3DExtras::QPhongMaterial *cylinderMaterial = new Qt3DExtras::QPhongMaterial();
-    cylinderMaterial->setDiffuse(QColor(QRgb(0x928327)));
 
-    // Cylinder
-    Qt3DCore::QEntity *m_cylinderEntity = new Qt3DCore::QEntity(sceneRoot);
-    m_cylinderEntity = new Qt3DCore::QEntity(m_cylinderEntity);
-    m_cylinderEntity->addComponent(cylinder);
-    m_cylinderEntity->addComponent(cylinderMaterial);
-    m_cylinderEntity->addComponent(cylinderTransform);
+//    Qt3DCore::QEntity *bodyEntity = new Qt3DCore::QEntity(sceneRoot);
+//    bodyEntity = new Qt3DCore::QEntity(bodyEntity);
+//    bodyEntity->addComponent(cylinder);
+//    bodyEntity->addComponent(cylinderMaterial);
+//    bodyEntity->addComponent(cylinderTransform2);
+
+
+//    // Cylinder
+//    Qt3DCore::QEntity *m_cylinderEntity = new Qt3DCore::QEntity(sceneRoot);
+//    m_cylinderEntity = new Qt3DCore::QEntity(m_cylinderEntity);
+//    m_cylinderEntity->addComponent(cylinder);
+//    m_cylinderEntity->addComponent(cylinderMaterial);
+//    m_cylinderEntity->addComponent(cylinderTransform);
+//    m_cylinderEntity->setParent(bodyEntity);
+
 
     // Cylinder2
-    Qt3DCore::QEntity *m_cylinderEntity2 = new Qt3DCore::QEntity(sceneRoot);
-    m_cylinderEntity2 = new Qt3DCore::QEntity(m_cylinderEntity2);
-    m_cylinderEntity2->addComponent(cylinder2);
-    m_cylinderEntity2->addComponent(cylinderMaterial);
-    m_cylinderEntity2->addComponent(cylinder2Transform);
+//    Qt3DCore::QEntity *m_cylinderEntity2 = new Qt3DCore::QEntity(sceneRoot);
+//    m_cylinderEntity2 = new Qt3DCore::QEntity(m_cylinderEntity2);
+//    m_cylinderEntity2->addComponent(cylinder2);
+//    m_cylinderEntity2->addComponent(cylinderMaterial);
+//    m_cylinderEntity2->addComponent(cylinder2Transform);
 
     setAxis(sceneRoot);
+    CreateModel(sceneRoot);
     view.setRootEntity(sceneRoot);
     view.show();
 
