@@ -1,9 +1,11 @@
 QT += 3dcore 3drender 3dinput 3dextras
 
-HEADERS +=
+HEADERS += \
+    model.h
 
 SOURCES += \
-    main.cpp
+    main.cpp \
+    model.cpp
 
 #RESOURCES += \
 #    ../exampleresources/chest.qrc \
