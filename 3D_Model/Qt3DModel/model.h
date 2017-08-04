@@ -32,64 +32,47 @@ public slots:
     void SetLeftLowerLegRotation(QQuaternion quaternion);
     void SetRightUpperLegRotation(QQuaternion quaternion);
     void SetRightLowerLegRotation(QQuaternion quaternion);
+    void SetHeadRotation(QQuaternion quaternion);
 
 private:
     Qt3DCore::QEntity *sceneRoot;
 
     //transforms
     Qt3DCore::QTransform *centerTransform;
-    Qt3DCore::QTransform *leftForearmTransform;
+    Qt3DCore::QTransform *leftLowerArmTransform;
     Qt3DCore::QTransform *leftUpperArmTransform;
     Qt3DCore::QTransform *leftUpperLegTransform;
     Qt3DCore::QTransform *leftLowerLegTransform;
-    Qt3DCore::QTransform *rightForearmTransform;
-    Qt3DCore::QTransform *rightArmTransform;
+    Qt3DCore::QTransform *rightLowerArmTransform;
+    Qt3DCore::QTransform *rightUpperArmTransform;
     Qt3DCore::QTransform *rightUpperLegTransform;
     Qt3DCore::QTransform *rightLowerLegTransform;
     Qt3DCore::QTransform *headTransform;
 
-    //matrices
+    QVector4D topCenterOrigin;
+    QVector4D bottomCenterOrigin;
+    QVector4D connectorLeftUpperAndLowerArmOrigin;
+    QVector4D connectorRightUpperAndLowerArmOrigin;
+    QVector4D connectorLeftUpperAndLowerLegOrigin;
+    QVector4D connectorRightUpperAndLowerLegOrigin;
+
+    QMatrix4x4 luaOffsetRM;
+    QMatrix4x4 llaOffsetRM;
+    QMatrix4x4 ruaOffsetRM;
+    QMatrix4x4 rlaOffsetRM;
+    QMatrix4x4 lulOffsetRM;
+    QMatrix4x4 lllOffsetRM;
+    QMatrix4x4 rulOffsetRM;
+    QMatrix4x4 rllOffsetRM;
     QMatrix4x4 offsetTM;
-
-    QMatrix4x4 relativeCenterRotationMatrix;
-    QMatrix4x4 relativeLeftUpperArmRotationMatrix;
-    QMatrix4x4 relativeLeftLowerArmRotationMatrix;
-    QMatrix4x4 relativeRightUpperArmRotationMatrix;
-    QMatrix4x4 relativeRightLowerArmRotationMatrix;
-    QMatrix4x4 relativeLeftUpperLegRotationMatrix;
-    QMatrix4x4 relativeLeftLowerLegRotationMatrix;
-    QMatrix4x4 relativeRightUpperLegRotationMatrix;
-    QMatrix4x4 relativeRightLowerLegRotationMatrix;
-
-    QMatrix4x4 leftUpperArmOriginMatrix;
-    QMatrix4x4 leftLowerArmOriginMatrix;
-    QMatrix4x4 rightUpperArmOriginMatrix;
-    QMatrix4x4 rightLowerArmOriginMatrix;
-    QMatrix4x4 leftUpperLegOriginMatrix;
-    QMatrix4x4 leftLowerLegOriginMatrix;
-    QMatrix4x4 rightUpperLegOriginMatrix;
-    QMatrix4x4 rightLowerLegOriginMatrix;
-    QMatrix4x4 centerOriginMatrix;
-    QMatrix4x4 headOriginMatrix;
-    QMatrix4x4 luaTM;
-    QMatrix4x4 llaOffsetTM;
-    QMatrix4x4 ruaTM;
-    QMatrix4x4 rlaOffsetTM;
-    QMatrix4x4 luaRM;
-    QMatrix4x4 llaRM;
-    QMatrix4x4 ruaRM;
-    QMatrix4x4 rlaRM;
-    QMatrix4x4 lulTM;
-    QMatrix4x4 lllOffsetTM;
-    QMatrix4x4 rulTM;
-    QMatrix4x4 rllOffsetTM;
-    QMatrix4x4 lulRM;
-    QMatrix4x4 lllRM;
-    QMatrix4x4 rulRM;
-    QMatrix4x4 rllRM;
-
-
-
+    QMatrix4x4 headOffsetTM;
+    QMatrix4x4 headTM;
+    QMatrix4x4 topCenterTM;
+    QMatrix4x4 bottomCenterTM;
+    QMatrix4x4 connectorLeftUpperAndLowerArmTM;
+    QMatrix4x4 connectorRightUpperAndLowerArmTM;
+    QMatrix4x4 connectorLeftUpperAndLowerLegTM;
+    QMatrix4x4 connectorRightUpperAndLowerLegTM;
 
 private slots:
     QMatrix4x4 GetTranslationMatrix(float x, float y, float z);

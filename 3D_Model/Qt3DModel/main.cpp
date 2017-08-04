@@ -33,21 +33,6 @@
 
 #include <QtMath>
 
-Qt3DExtras::QCylinderMesh *modelMesh;
-Qt3DExtras::QCylinderMesh *centerMesh;
-Qt3DExtras::QSphereMesh *headMesh;
-
-Qt3DCore::QTransform *bodyTransform;
-Qt3DCore::QTransform *leftForearmTransform;
-Qt3DCore::QTransform *leftArmTransform;
-Qt3DCore::QTransform *leftThighTransform;
-Qt3DCore::QTransform *leftLegTransform;
-Qt3DCore::QTransform *rightForearmTransform;
-Qt3DCore::QTransform *rightArmTransform;
-Qt3DCore::QTransform *rightThighTransform;
-Qt3DCore::QTransform *rightLegTransform;
-Qt3DCore::QTransform *headTransform;
-
 void setAxis(Qt3DCore::QEntity *sceneRoot)
 {
     Qt3DExtras::QCylinderMesh *axisX = new Qt3DExtras::QCylinderMesh();
@@ -114,16 +99,17 @@ int main(int argc, char* argv[])
 
     Model *model = new Model(sceneRoot);
     model->Initialize();
-    //model->SetCenterRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 0));
-    model->SetCenterRotation(QQuaternion::fromAxisAndAngle(1, 0, 0, 20));
-    //model->SetLeftUpperArmRotation(QQuaternion::fromAxisAndAngle(1, 0, 0, 45));
-//    model->SetLeftLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
-//    model->SetRightUpperArmRotation(QQuaternion::fromAxisAndAngle(1, 0, 0, -45));
-//    model->SetRightLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -90));
-//    model->SetLeftUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
-//    model->SetLeftLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 90));
-//    model->SetRightUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
-//    model->SetRightLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -90));
+
+    model->SetCenterRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 0));
+    model->SetLeftUpperArmRotation(QQuaternion::fromAxisAndAngle(0, 1, 0,45));
+    model->SetLeftLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 90));
+    model->SetRightUpperArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
+    model->SetRightLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -90));
+    model->SetLeftUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
+    model->SetLeftLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 90));
+    model->SetRightUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
+    model->SetRightLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -90));
+    model->SetHeadRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
 
     view.setRootEntity(sceneRoot);
     view.show();
