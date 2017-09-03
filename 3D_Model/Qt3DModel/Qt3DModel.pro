@@ -7,9 +7,6 @@ SOURCES += \
     main.cpp \
     model.cpp
 
-#RESOURCES += \
-#    ../exampleresources/chest.qrc \
-#    ../exampleresources/houseplants.qrc \
-#    ../exampleresources/metalbarrel.qrc \
-#    ../exampleresources/obj.qrc \
-#    ../exampleresources/textures.qrc
+RESOURCES += \
+    rightlowerleg.qrc \
+    leftlowerleg.qrc

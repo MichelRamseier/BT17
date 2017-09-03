@@ -30,7 +30,7 @@
 #include <QDirectionalLight>
 
 #include <model.h>
-
+#include <Qt3DRender/QMesh>
 #include <QtMath>
 
 void setAxis(Qt3DCore::QEntity *sceneRoot)
@@ -72,6 +72,24 @@ void setAxis(Qt3DCore::QEntity *sceneRoot)
     axisZEntity->addComponent(axisZ);
     axisZEntity->addComponent(axisMaterial);
     axisZEntity->addComponent(axisZtransform);
+
+    Qt3DExtras::QPhongMaterial *phongMaterial = new Qt3DExtras::QPhongMaterial();
+    phongMaterial->setDiffuse(QColor(204, 205, 75)); // Safari Yellow #cccd4b
+    phongMaterial->setSpecular(Qt::white);
+
+    Qt3DRender::QMesh *m_mesh = new Qt3DRender::QMesh();
+    m_mesh->setSource(QUrl("qrc:assets/rightlowerleg.obj"));
+    Qt3DCore::QEntity *test = new Qt3DCore::QEntity(sceneRoot);
+    test = new Qt3DCore::QEntity(test);
+    test->addComponent(m_mesh);
+    test->addComponent(phongMaterial);
+
+    Qt3DRender::QMesh *m_mesh2 = new Qt3DRender::QMesh();
+    m_mesh2->setSource(QUrl("qrc:assets/leftlowerleg.obj"));
+    Qt3DCore::QEntity *test2 = new Qt3DCore::QEntity(sceneRoot);
+    test = new Qt3DCore::QEntity(test2);
+    test->addComponent(m_mesh2);
+    test->addComponent(phongMaterial);
 }
 
 int main(int argc, char* argv[])

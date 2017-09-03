@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/leftlowerleg.obj</file>
+    </qresource>
+</RCC>
