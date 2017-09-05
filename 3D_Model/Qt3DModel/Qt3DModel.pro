@@ -8,5 +8,4 @@ SOURCES += \
     model.cpp
 
 RESOURCES += \
-    rightlowerleg.qrc \
-    leftlowerleg.qrc
+    model.qrc
