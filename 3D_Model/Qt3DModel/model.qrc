@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/leftlowerleg.obj</file>
+        <file>assets/center.obj</file>
+        <file>assets/head.obj</file>
+        <file>assets/rightlowerleg.obj</file>
+        <file>assets/rightupperleg.obj</file>
+        <file>assets/leftupperleg.obj</file>
+        <file>assets/rightupperarm.obj</file>
+        <file>assets/leftupperarm.obj</file>
+        <file>assets/rightlowerarm.obj</file>
+        <file>assets/leftlowerarm.obj</file>
+    </qresource>
+</RCC>
