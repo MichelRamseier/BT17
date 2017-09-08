@@ -30,7 +30,6 @@
 #include <QDirectionalLight>
 
 #include <model.h>
-#include <Qt3DRender/QMesh>
 #include <QtMath>
 
 void setAxis(Qt3DCore::QEntity *sceneRoot)
@@ -73,23 +72,7 @@ void setAxis(Qt3DCore::QEntity *sceneRoot)
     axisZEntity->addComponent(axisMaterial);
     axisZEntity->addComponent(axisZtransform);
 
-    Qt3DExtras::QPhongMaterial *phongMaterial = new Qt3DExtras::QPhongMaterial();
-    phongMaterial->setDiffuse(QColor(204, 205, 75)); // Safari Yellow #cccd4b
-    phongMaterial->setSpecular(Qt::white);
 
-    Qt3DRender::QMesh *m_mesh = new Qt3DRender::QMesh();
-    m_mesh->setSource(QUrl("qrc:assets/rightlowerleg.obj"));
-    Qt3DCore::QEntity *test = new Qt3DCore::QEntity(sceneRoot);
-    test = new Qt3DCore::QEntity(test);
-    test->addComponent(m_mesh);
-    test->addComponent(phongMaterial);
-
-    Qt3DRender::QMesh *m_mesh2 = new Qt3DRender::QMesh();
-    m_mesh2->setSource(QUrl("qrc:assets/leftlowerleg.obj"));
-    Qt3DCore::QEntity *test2 = new Qt3DCore::QEntity(sceneRoot);
-    test = new Qt3DCore::QEntity(test2);
-    test->addComponent(m_mesh2);
-    test->addComponent(phongMaterial);
 }
 
 int main(int argc, char* argv[])
@@ -118,16 +101,16 @@ int main(int argc, char* argv[])
     Model *model = new Model(sceneRoot);
     model->Initialize();
 
-    model->SetCenterRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 0));
-    model->SetLeftUpperArmRotation(QQuaternion::fromAxisAndAngle(0, 1, 0,45));
-    model->SetLeftLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 90));
-    model->SetRightUpperArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
-    model->SetRightLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -90));
-    model->SetLeftUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
-    model->SetLeftLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 90));
-    model->SetRightUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
-    model->SetRightLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -90));
-    model->SetHeadRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
+    model->SetCenterRotation(QQuaternion::fromAxisAndAngle(1, 0, 0, 0));
+    model->SetLeftUpperArmRotation(QQuaternion::fromAxisAndAngle(1, 0, 0, 90));
+//    model->SetLeftLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 90));
+//    model->SetRightUpperArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
+//    model->SetRightLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -90));
+//    model->SetLeftUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
+//    model->SetLeftLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 90));
+//    model->SetRightUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
+//    model->SetRightLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -90));
+//    model->SetHeadRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
 
     view.setRootEntity(sceneRoot);
     view.show();
