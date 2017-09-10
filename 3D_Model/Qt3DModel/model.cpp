@@ -60,7 +60,7 @@ void Model::Initialize()
     this->headTransform = new Qt3DCore::QTransform();
 
     Qt3DExtras::QPhongMaterial *phongMaterial = new Qt3DExtras::QPhongMaterial();
-    phongMaterial->setDiffuse(QColor(QRgb(0x34F247)));
+    phongMaterial->setDiffuse(QColor(QRgb(0x69F024)));
 
     Qt3DRender::QMesh *rightLowerLegMesh = new Qt3DRender::QMesh();
     rightLowerLegMesh->setSource(QUrl("qrc:assets/rightlowerleg.obj"));
@@ -208,77 +208,77 @@ void Model::SetLeftUpperArmRotation(QQuaternion quaternion)
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
     this->leftUpperArmTransform->setMatrix(this->connectorCenterAndLeftUpperArmTM * rotationMatrix * this->connectorCenterAndLeftUpperArmTMOrigin.inverted());
 
+    //update child
+    QVector4D connectorLeftUpperAndLowerArm = this->connectorCenterAndLeftUpperArmTM * rotationMatrix * this->connectorCenterAndLeftUpperArmTMOrigin.inverted() * this->connectorLeftUpperAndLowerArmOrigin;
+    this->connectorLeftUpperAndLowerArmTM = GetTranslationMatrix(connectorLeftUpperAndLowerArm.x(),
+                                                                 connectorLeftUpperAndLowerArm.y(),
+                                                                 connectorLeftUpperAndLowerArm.z());
 
-//    QVector4D connectorLeftUpperAndLowerArm = rotationMatrix * this->connectorLeftUpperAndLowerArmOrigin;
-//    this->connectorLeftUpperAndLowerArmTM = GetTranslationMatrix(connectorLeftUpperAndLowerArm.x(),
-//                                                                 connectorLeftUpperAndLowerArm.y(),
-//                                                                 connectorLeftUpperAndLowerArm.z());
-
-//    SetLeftLowerArmRotation(quaternion);
+    this->leftLowerArmTransform->setMatrix(this->connectorLeftUpperAndLowerArmTM * this->connectorLeftUpperAndLowerArmTMOrigin.inverted());
 }
 
 void Model::SetLeftLowerArmRotation(QQuaternion quaternion)
 {
-//    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-//    this->leftLowerArmTransform->setMatrix(this->connectorLeftUpperAndLowerArmTM * topCenterTM  * rotationMatrix * this->llaOffsetRM * this->offsetTM);
+    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
+    this->leftLowerArmTransform->setMatrix(this->connectorLeftUpperAndLowerArmTM * rotationMatrix * this->connectorLeftUpperAndLowerArmTMOrigin.inverted());
 }
 
 void Model::SetRightUpperArmRotation(QQuaternion quaternion)
 {
-//    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-//    this->rightUpperArmTransform->setMatrix(this->topCenterTM * rotationMatrix * this->ruaOffsetRM * this->offsetTM);
-//    QVector4D connectorRightUpperAndLowerArm = rotationMatrix * this->connectorRightUpperAndLowerArmOrigin;
-//    this->connectorRightUpperAndLowerArmTM = GetTranslationMatrix(connectorRightUpperAndLowerArm.x(),
-//                                                                 connectorRightUpperAndLowerArm.y(),
-//                                                                 connectorRightUpperAndLowerArm.z());
+    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
+    this->rightUpperArmTransform->setMatrix(this->connectorCenterAndRightUpperArmTM * rotationMatrix * this->connectorCenterAndRightUpperArmTMOrigin.inverted());
+    QVector4D connectorRightUpperAndLowerArm = this->connectorCenterAndRightUpperArmTM * rotationMatrix * this->connectorCenterAndRightUpperArmTMOrigin.inverted() * this->connectorRightUpperAndLowerArmOrigin;
+    this->connectorRightUpperAndLowerArmTM = GetTranslationMatrix(connectorRightUpperAndLowerArm.x(),
+                                                                 connectorRightUpperAndLowerArm.y(),
+                                                                 connectorRightUpperAndLowerArm.z());
 
-//    SetRightLowerArmRotation(quaternion);
+    this->rightLowerArmTransform->setMatrix(this->connectorRightUpperAndLowerArmTM * this->connectorRightUpperAndLowerArmTMOrigin.inverted());
 }
 
 void Model::SetRightLowerArmRotation(QQuaternion quaternion)
 {
-//    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-//    this->rightLowerArmTransform->setMatrix(this->connectorRightUpperAndLowerArmTM * topCenterTM  * rotationMatrix * this->rlaOffsetRM * this->offsetTM);
+    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
+    this->rightLowerArmTransform->setMatrix(this->connectorRightUpperAndLowerArmTM * rotationMatrix * this->connectorRightUpperAndLowerArmTMOrigin.inverted());
 }
 
 void Model::SetLeftUpperLegRotation(QQuaternion quaternion)
 {
-//    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-//    this->leftUpperLegTransform->setMatrix(this->bottomCenterTM * rotationMatrix * this->lulOffsetRM * this->offsetTM);
-//    QVector4D connectorLeftUpperAndLowerLeg = rotationMatrix * this->connectorLeftUpperAndLowerLegOrigin;
-//    this->connectorLeftUpperAndLowerLegTM = GetTranslationMatrix(connectorLeftUpperAndLowerLeg.x(),
-//                                                                 connectorLeftUpperAndLowerLeg.y(),
-//                                                                 connectorLeftUpperAndLowerLeg.z());
+    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
+    this->leftUpperLegTransform->setMatrix(this->connectorCenterAndLeftUpperLegTM * rotationMatrix * this->connectorCenterAndLeftUpperLegTMOrigin.inverted());
+    QVector4D connectorLeftUpperAndLowerLeg = this->connectorCenterAndLeftUpperLegTM * rotationMatrix * this->connectorCenterAndLeftUpperLegTMOrigin.inverted() * this->connectorLeftUpperAndLowerLegOrigin;
+    this->connectorLeftUpperAndLowerLegTM = GetTranslationMatrix(connectorLeftUpperAndLowerLeg.x(),
+                                                                 connectorLeftUpperAndLowerLeg.y(),
+                                                                 connectorLeftUpperAndLowerLeg.z());
 
-//    SetLeftLowerLegRotation(quaternion);
+    this->leftLowerLegTransform->setMatrix(this->connectorLeftUpperAndLowerLegTM * this->connectorLeftUpperAndLowerLegTMOrigin.inverted());
 }
 
 void Model::SetLeftLowerLegRotation(QQuaternion quaternion)
 {
-//    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-//    this->leftLowerLegTransform->setMatrix(this->connectorLeftUpperAndLowerLegTM * this->bottomCenterTM  * rotationMatrix * this->lllOffsetRM * this->offsetTM);
+    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
+    this->leftLowerLegTransform->setMatrix(this->connectorLeftUpperAndLowerLegTM * rotationMatrix * this->connectorLeftUpperAndLowerLegTMOrigin.inverted());
 }
 
 void Model::SetRightUpperLegRotation(QQuaternion quaternion)
 {
-//    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-//    this->rightUpperLegTransform->setMatrix(this->bottomCenterTM * rotationMatrix * this->rulOffsetRM * this->offsetTM);
-//    QVector4D connectorRightUpperAndLowerLeg = rotationMatrix * this->connectorRightUpperAndLowerLegOrigin;
-//    this->connectorRightUpperAndLowerLegTM = GetTranslationMatrix(connectorRightUpperAndLowerLeg.x(),
-//                                                                 connectorRightUpperAndLowerLeg.y(),
-//                                                                 connectorRightUpperAndLowerLeg.z());
+    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
+    this->rightUpperLegTransform->setMatrix(this->connectorCenterAndRightUpperLegTM * rotationMatrix * this->connectorCenterAndRightUpperLegTMOrigin.inverted());
+    QVector4D connectorRightUpperAndLowerLeg = this->connectorCenterAndRightUpperLegTM * rotationMatrix * this->connectorCenterAndRightUpperLegTMOrigin.inverted() * this->connectorRightUpperAndLowerLegOrigin;
+    this->connectorRightUpperAndLowerLegTM = GetTranslationMatrix(connectorRightUpperAndLowerLeg.x(),
+                                                                 connectorRightUpperAndLowerLeg.y(),
+                                                                 connectorRightUpperAndLowerLeg.z());
 
-//    SetRightLowerLegRotation(quaternion);
+    this->rightLowerLegTransform->setMatrix(this->connectorRightUpperAndLowerLegTM * this->connectorRightUpperAndLowerLegTMOrigin.inverted());
 }
 
 void Model::SetRightLowerLegRotation(QQuaternion quaternion)
 {
-//    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-//    this->rightLowerLegTransform->setMatrix(this->connectorRightUpperAndLowerLegTM * this->bottomCenterTM  * rotationMatrix * this->rllOffsetRM * this->offsetTM);
+    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
+    this->rightLowerLegTransform->setMatrix(this->connectorRightUpperAndLowerLegTM * rotationMatrix * this->connectorRightUpperAndLowerLegTMOrigin.inverted());
 }
 
 void Model::SetHeadRotation(QQuaternion quaternion)
 {
-//    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-//    this->headTransform->setMatrix(this->topCenterTM * this->headTM * rotationMatrix * this->headOffsetTM);
+    QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
+    this->headTransform->setMatrix(this->connectorHeadCenterTM * rotationMatrix * this->connectorHeadCenterTMOrigin.inverted());
 }

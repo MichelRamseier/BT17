@@ -102,14 +102,14 @@ int main(int argc, char* argv[])
     model->Initialize();
 
     model->SetCenterRotation(QQuaternion::fromAxisAndAngle(1, 0, 0, 0));
-    model->SetLeftUpperArmRotation(QQuaternion::fromAxisAndAngle(1, 0, 0, 90));
-//    model->SetLeftLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 90));
-//    model->SetRightUpperArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
-//    model->SetRightLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -90));
-//    model->SetLeftUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
-//    model->SetLeftLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 90));
-//    model->SetRightUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
-//    model->SetRightLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -90));
+//    model->SetLeftUpperArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
+//    model->SetLeftLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
+//    model->SetRightUpperArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
+//    model->SetRightLowerArmRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
+//    model->SetLeftUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
+//    model->SetLeftLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, -45));
+//    model->SetRightUpperLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
+//    model->SetRightLowerLegRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
 //    model->SetHeadRotation(QQuaternion::fromAxisAndAngle(0, 0, 1, 45));
 
     view.setRootEntity(sceneRoot);
