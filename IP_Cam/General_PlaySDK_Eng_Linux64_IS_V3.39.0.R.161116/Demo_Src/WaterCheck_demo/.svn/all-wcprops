@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svnpl/SDKProductLine/!svn/ver/22598/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/WaterCheck_demo
+END
+main64.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svnpl/SDKProductLine/!svn/ver/22598/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/WaterCheck_demo/main64.cpp
+END
+watercheck_demo.ui
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/WaterCheck_demo/watercheck_demo.ui
+END
+WaterCheck_demo.pro
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/WaterCheck_demo/WaterCheck_demo.pro
+END
+watercheck_demo.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/WaterCheck_demo/watercheck_demo.cpp
+END
+dhplay.h
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/WaterCheck_demo/dhplay.h
+END
+watercheckthread.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/WaterCheck_demo/watercheckthread.cpp
+END
+watercheck_demo.h
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/WaterCheck_demo/watercheck_demo.h
+END
+main32.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/WaterCheck_demo/main32.cpp
+END
+watercheckthread.h
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/WaterCheck_demo/watercheckthread.h
+END

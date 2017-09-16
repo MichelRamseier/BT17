@@ -1,0 +1,263 @@
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svnpl/SDKProductLine/!svn/ver/23860/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo
+END
+dlglocate.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlglocate.cpp
+END
+IState.h
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/IState.h
+END
+main64.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svnpl/SDKProductLine/!svn/ver/22598/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/main64.cpp
+END
+FilePlayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/FilePlayer.h
+END
+Player.h
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/Player.h
+END
+readdatathread.h
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/readdatathread.h
+END
+mainwindow.ui
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/mainwindow.ui
+END
+FileStreamPlayer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/FileStreamPlayer.cpp
+END
+PlayStateText.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/PlayStateText.cpp
+END
+mainwindow.h
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/mainwindow.h
+END
+dlgmediainfo.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgmediainfo.cpp
+END
+dlgsnappicsetting.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgsnappicsetting.cpp
+END
+dlgcutfile.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgcutfile.cpp
+END
+dhplayEx.h
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svnpl/SDKProductLine/!svn/ver/23860/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dhplayEx.h
+END
+IPlay.h
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/IPlay.h
+END
+dlgopenfile.ui
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgopenfile.ui
+END
+dlgsetcolor.h
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgsetcolor.h
+END
+PlayDemo.pro
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svnpl/SDKProductLine/!svn/ver/23452/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/PlayDemo.pro
+END
+dlglocate.ui
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlglocate.ui
+END
+IState.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/IState.cpp
+END
+main32.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/main32.cpp
+END
+FilePlayer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/FilePlayer.cpp
+END
+Player.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/Player.cpp
+END
+dlgopenfile.h
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgopenfile.h
+END
+readdatathread.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/readdatathread.cpp
+END
+dlglocate.h
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlglocate.h
+END
+Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/Info.plist
+END
+mainwindow.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/mainwindow.cpp
+END
+dlgsetcolor.ui
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgsetcolor.ui
+END
+dlgcutfile.ui
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgcutfile.ui
+END
+FileStreamPlayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/FileStreamPlayer.h
+END
+dlgmediainfo.ui
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgmediainfo.ui
+END
+dlgsnappicsetting.ui
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgsnappicsetting.ui
+END
+IPlay.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/IPlay.cpp
+END
+PlayStateText.h
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/PlayStateText.h
+END
+dlgsetcolor.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgsetcolor.cpp
+END
+dhplay.h
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svnpl/SDKProductLine/!svn/ver/23860/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dhplay.h
+END
+dlgmediainfo.h
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgmediainfo.h
+END
+dlgcutfile.h
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgcutfile.h
+END
+IWindowEvent.h
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/IWindowEvent.h
+END
+dlgsnappicsetting.h
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgsnappicsetting.h
+END
+dlgopenfile.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/dlgopenfile.cpp
+END
+resource.qrc
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/PlayDemo/resource.qrc
+END

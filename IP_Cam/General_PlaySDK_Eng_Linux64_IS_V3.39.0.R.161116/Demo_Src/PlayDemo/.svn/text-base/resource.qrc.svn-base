@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/res/icon">
+        <file>Res/tobegin.png</file>
+        <file>Res/catchpic.png</file>
+        <file>Res/color.png</file>
+        <file>Res/fast.png</file>
+        <file>Res/onebyoneback.png</file>
+        <file>Res/pause.png</file>
+        <file>Res/play_backward.png</file>
+        <file>Res/play_forward.png</file>
+        <file>Res/play.png</file>
+        <file>Res/playonebyone.png</file>
+        <file>Res/slow.png</file>
+        <file>Res/sound.png</file>
+        <file>Res/stop.png</file>
+        <file>Res/toend.png</file>
+        <file>Res/mute.png</file>
+    </qresource>
+</RCC>

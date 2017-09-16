@@ -34,12 +34,22 @@
 
 #include "model.h"
 
-class SkeletonView
+class SkeletonView : public QObject
 {
+    Q_OBJECT
 public:
     SkeletonView();
+    void show();
+
+public slots:
+    void vectorSample(quint64 deviceSerial, quint32 trackId,quint32 sampleNumber,QList<double> data);
+
 private:
     void setAxis(Qt3DCore::QEntity *sceneRoot);
+
+     Qt3DExtras::Qt3DWindow view;
+     Model *model;
+
 };
 
 #endif // SKELETONVIEW_H

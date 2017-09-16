@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svnpl/SDKProductLine/!svn/ver/22598/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/FileConvert_demo
+END
+main64.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svnpl/SDKProductLine/!svn/ver/22598/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/FileConvert_demo/main64.cpp
+END
+fileconvert_demo.ui
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/FileConvert_demo/fileconvert_demo.ui
+END
+FileConvert_demo.pro
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/FileConvert_demo/FileConvert_demo.pro
+END
+fileconvert_demo.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/FileConvert_demo/fileconvert_demo.cpp
+END
+dhplay.h
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/FileConvert_demo/dhplay.h
+END
+fileconvertthread.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/FileConvert_demo/fileconvertthread.cpp
+END
+main32.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/FileConvert_demo/main32.cpp
+END
+fileconvert_demo.h
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/FileConvert_demo/fileconvert_demo.h
+END
+fileconvertthread.h
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/FileConvert_demo/fileconvertthread.h
+END

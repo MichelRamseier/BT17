@@ -1,8 +1,14 @@
 #include "skeletonview.h"
 
+// FIXME: Properly integrate Axiamo Enumerations
+#define Quat6 0x0140
+
 SkeletonView::SkeletonView()
 {
-    Qt3DExtras::Qt3DWindow view;
+}
+
+void SkeletonView::show(){
+
 
     // Scene Root
     Qt3DCore::QEntity *sceneRoot = new Qt3DCore::QEntity();
@@ -20,7 +26,7 @@ SkeletonView::SkeletonView()
 
 
     setAxis(sceneRoot);
-    Model *model = new Model(sceneRoot);
+    model = new Model(sceneRoot);
     model->Initialize();
 
     model->SetCenterRotation(QQuaternion::fromAxisAndAngle(1, 0, 0, 0));
@@ -36,6 +42,24 @@ SkeletonView::SkeletonView()
 
     view.setRootEntity(sceneRoot);
     view.show();
+
+
+}
+
+void SkeletonView::vectorSample(quint64 deviceSerial, quint32 trackId, quint32 sampleNumber, QList<double> data)
+{
+    if(trackId == Quat6){
+        if(data.size() >= 4){
+            //QQuaternion rotation(data[0],data[1],data[2],data[3]);
+            QQuaternion rotation(data[0],data[1],data[3],data[2]);
+
+            //QQuaternion rotation(data[0],data[1],-data[3],data[2]);
+            //QQuaternion rotation(data[0],data[3],data[2],data[1]);
+            //QQuaternion rotation(data[0],data[2],data[1],data[3]);
+            model->SetLeftLowerArmRotation(rotation);
+        }
+    }
+
 }
 
 void SkeletonView::setAxis(Qt3DCore::QEntity *sceneRoot)
