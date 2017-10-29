@@ -59,18 +59,6 @@ private:
     QVector4D connectorLeftUpperAndLowerLegOrigin;
     QVector4D connectorRightUpperAndLowerLegOrigin;
 
-//    QMatrix4x4 luaOffsetRM;
-//    QMatrix4x4 llaOffsetRM;
-//    QMatrix4x4 ruaOffsetRM;
-//    QMatrix4x4 rlaOffsetRM;
-//    QMatrix4x4 lulOffsetRM;
-//    QMatrix4x4 lllOffsetRM;
-//    QMatrix4x4 rulOffsetRM;
-//    QMatrix4x4 rllOffsetRM;
-//    QMatrix4x4 offsetTM;
-//    QMatrix4x4 headOffsetTM;
-//    QMatrix4x4 headTM;
-
     QMatrix4x4 connectorHeadCenterTM;
     QMatrix4x4 connectorCenterAndRightUpperArmTM;
     QMatrix4x4 connectorCenterAndLeftUpperArmTM;
