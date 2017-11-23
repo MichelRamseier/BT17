@@ -77,8 +77,8 @@ public slots:
     void vectorSample(quint64 deviceSerial, quint32 trackId,quint32 sampleNumber,QList<double> data);
 
 private slots:
-    void calibrate();
-    void resetZaxisDrift();
+    void removeOffset();
+    void removeZaxisDrift();
 
 private:
     void setAxis(Qt3DCore::QEntity *sceneRoot);
@@ -87,6 +87,8 @@ private:
     Model *model;
     QQuaternion modelOffsetRotation;
     QQuaternion invertedSensorOffsetRotation;
+    QQuaternion currentQuaternion;
+    QQuaternion invertedZAxisDriftRotation;
 
 };
 
