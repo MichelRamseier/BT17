@@ -122,6 +122,7 @@ void SkeletonView::show(){
 
 void SkeletonView::vectorSample(quint64 deviceSerial, quint32 trackId, quint32 sampleNumber, QList<double> data)
 {
+     QString DeviceLabel = axiamoHelper->getDeviceLabel((deviceSerial));
     //sensor hat eine "initial" position
     if(trackId == Quat9)
     {
@@ -140,8 +141,12 @@ void SkeletonView::vectorSample(quint64 deviceSerial, quint32 trackId, quint32 s
             //currentQuaternionWithOffsetCorrection =
 
             rotation = rotation * invertedSensorOffsetRotation * modelOffsetRotation;
-
-            model->SetLeftLowerArmRotation(rotation);
+            if(DeviceLabel == "leftLowerArm"){
+                model->SetLeftLowerArmRotation(rotation);
+            }else if(DeviceLabel == "leftUpperArm"){
+                model->SetLeftUpperArmRotation(rotation);
+            }
+//
 //            QMatrix4x4 rotationMatrix = QMatrix4x4(rotation.toRotationMatrix());
 //            this->testTransform->setMatrix(rotationMatrix);
         }

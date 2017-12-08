@@ -10,6 +10,6 @@ int main(int argc, char *argv[])
     //Dialog w;
     //w.show();
     CameraController *camController = new CameraController();
-    camController->SetPosition(5,50);
+    camController->SetPosition(0,10);
     return a.exec();
 }

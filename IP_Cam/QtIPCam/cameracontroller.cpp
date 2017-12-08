@@ -9,7 +9,7 @@
 #include <iostream>
 using namespace std;
 
-CameraController::CameraController()
+CameraController::CameraController() : QObject(NULL)
 {
     this->InitData();
     this->Login();
@@ -51,11 +51,11 @@ void CameraController::InitData()
 
 void CameraController::Login()
 {
-    QString strIp = "192.168.1.108";
+    QString strIp = "192.168.1.109";
     QString strUserName = "admin";
     //QString xxx = "37777";
     long dvrPort = 37777;
-    QString strPassword = "positioning";
+    QString strPassword = "Axiamo4Football";
 
     NET_DEVICEINFO deviceInfo = {0};
     int error = 0;
@@ -140,4 +140,10 @@ void CameraController::SetPosition(double x, double y)
     int nParam3 = zoom;
     bool bStop = false;
     CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, nParam1, nParam2, nParam3, bStop);
+}
+
+void CameraController::playerLocationChanged(quint64 id, QVector3D location)
+{
+    qDebug() << " position for player " << id << " is set to: " << location;
+    SetPosition(location.x(),location.y());
 }

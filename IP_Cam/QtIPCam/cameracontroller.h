@@ -3,14 +3,20 @@
 
 #include <QDialog>
 #include <QTimer>
+#include <QVector3D>
+#include <QObject>
 #include "dhnetsdk.h"
 
-class CameraController
+class CameraController : public QObject
 {
+    Q_OBJECT
 public:
     CameraController();
     ~CameraController();
     void SetPosition(double x, double y);
+
+public slots:
+    void playerLocationChanged(quint64, QVector3D);
 
 private:
     void Login();

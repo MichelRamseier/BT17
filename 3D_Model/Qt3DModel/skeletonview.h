@@ -62,8 +62,7 @@
 
 #include <model.h>
 #include <QtMath>
-
-
+#include "commonsAxiamo.h"
 #include "model.h"
 
 class SkeletonView : public QObject
