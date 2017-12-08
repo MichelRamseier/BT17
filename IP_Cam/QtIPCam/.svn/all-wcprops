@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svnpl/SDKProductLine/!svn/ver/21809/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl
+END
+UserDefine.h
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl/UserDefine.h
+END
+dialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl/dialog.cpp
+END
+Ptz.h
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl/Ptz.h
+END
+dialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl/dialog.h
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl/main.cpp
+END
+dhnetsdk.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl/dhnetsdk.h
+END
+dialog.ui
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl/dialog.ui
+END
+PTZControl.pro
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svnpl/SDKProductLine/!svn/ver/18743/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl/PTZControl.pro
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl/Makefile
+END
+Ptz.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnpl/SDKProductLine/!svn/ver/21809/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/PTZControl/Ptz.cpp
+END

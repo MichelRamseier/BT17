@@ -1,18 +1,33 @@
 #include "cameracontroller.h"
-//#include "ui_dialog.h"
 #include <QMessageBox>
 #include <QtMath>
 #include <QDebug>
-
-//#include "Ptz.h"
 #include "UserDefine.h"
 #include <iostream>
+#include <qfile.h>
+#include <qdir.h>
+#include <camera.h>
 using namespace std;
 
-CameraController::CameraController() : QObject(NULL)
+CameraController::CameraController()
 {
+    //evtl. mit id des tag
+    camConfigs = this->GetCamConfigs();
     this->InitData();
-    this->Login();
+    foreach (QStringList camConfig, camConfigs)
+    {
+        QString ip = camConfig[0];
+        long port = camConfig[1].toLong();
+        QString username = camConfig[2];
+        QString pw = camConfig[3];
+        int posx = camConfig[4].toInt();
+        int posy = camConfig[5].toInt();
+
+        //camera cam = new camera(ip, port, username, pw);
+
+        this->Login(ip, port, username, pw);
+        this->SetPosition(posx, posy);
+    }
 }
 
 CameraController::~CameraController()
@@ -49,13 +64,12 @@ void CameraController::InitData()
 //    return true;
 }
 
-void CameraController::Login()
+void CameraController::Login(QString ip, long port, QString username, QString pw)
 {
-    QString strIp = "192.168.1.109";
+    QString strIp = "192.168.1.108";
     QString strUserName = "admin";
-    //QString xxx = "37777";
     long dvrPort = 37777;
-    QString strPassword = "Axiamo4Football";
+    QString strPassword = "positioning";
 
     NET_DEVICEINFO deviceInfo = {0};
     int error = 0;
@@ -122,24 +136,99 @@ bool CameraController::SetChannel(int nChannel)
 
 void CameraController::SetPosition(double x, double y)
 {
+    cameraPositionX = x;
+    cameraPositionY = y;
+}
+
+//kamera id; QPair
+void CameraController::DriveCameraToPosition(double x, double y)
+{
     if(m_lLoginID <=0 || m_nChannel < 0 )
     {
         return;
     }
 
-    // DH_EXTPTZ_EXACTGOTO means: go to tilt angle x and pan angle y
+    // kamera id
+    // drehung
+    // QMultiMedia?
+    // mehrere spieler, "mitte" ansteuern
+    // zoom einstellen?
+    // threading, QThread, Objekt in Thread verschieben
+    // mehrere Kameras
+    // aufzeichnung starten (directory vorgegeben, file zurückliefern)
+    // aufzeichung stoppen
+    // set camera position funktion ergänzen (x, y, z)
+
+    //http://192.168.1.108/axis-cgi/mjpg/video.cgi?subtype=1
+
+    double diffCamPointX = x - cameraPositionX;
+    double diffCamPointY = y - cameraPositionY;
+
+    double panAngle;
+    if(diffCamPointX >= 0 && diffCamPointY >= 0)
+    {
+        panAngle = qRadiansToDegrees(qAtan2(y, x));
+    }
+    else if(diffCamPointX >= 0 && diffCamPointY < 0)
+    {
+        panAngle = 360 - qRadiansToDegrees(qAtan2(y, x));
+    }
+    else if(diffCamPointX < 0 && diffCamPointY >= 0)
+    {
+        panAngle = qRadiansToDegrees(qAtan2(y, x)) + 180;
+    }
+    else if(diffCamPointX < 0 && diffCamPointY < 0)
+    {
+        panAngle = qRadiansToDegrees(qAtan2(y, x)) + 180;
+    }
+
     // PAN RANGE: 0 - 3600
     // TILT RANGE: 0 - 900
-    int nType = DH_EXTPTZ_EXACTGOTO;
-    int panAngle = qFloor(qRadiansToDegrees(qAtan2(y, x))*10);
+    // ZOOM RANGE: 1 - 128
+    // Adjust the angle because the pan range goes to 3600 instead of 360
+    int adjustedPanAngle = qFloor(panAngle*10);
     int tiltAngle = 0;
     int zoom = 1;
 
-    int nParam1 = panAngle;
+    // DH_EXTPTZ_EXACTGOTO means: go to tilt angle x and pan angle y
+    int nType = DH_EXTPTZ_EXACTGOTO;
+    int nParam1 = adjustedPanAngle;
     int nParam2 = tiltAngle;
     int nParam3 = zoom;
     bool bStop = false;
+
     CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, nParam1, nParam2, nParam3, bStop);
+}
+
+QList<QStringList> CameraController::GetCamConfigs()
+{
+    QFile file("../QtIPCam/Config/CamConfig");
+    if(!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::information(0, "error", file.errorString() + "Current Path: " + QDir::currentPath());
+    }
+
+    QTextStream in(&file);
+
+    QList<QStringList> camConfigs = QList<QStringList>();
+
+    bool firstLine = true;
+    while(!in.atEnd())
+    {
+        QString line = in.readLine();
+        if(!firstLine)
+        {
+            QStringList cam = line.split(",");
+            camConfigs.append(cam);
+        }
+        else
+        {
+            firstLine = false;
+        }
+    }
+
+    file.close();
+
+    return camConfigs;
 }
 
 void CameraController::playerLocationChanged(quint64 id, QVector3D location)

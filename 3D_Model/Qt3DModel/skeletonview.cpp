@@ -4,9 +4,8 @@
 #define Quat6 0x0140
 #define Quat9 0x0141
 
-bool initialization = true;
-QQuaternion invertedZAxisRotation;
-QQuaternion currentQuaternion;
+//bool initialization = true;
+
 
 SkeletonView::SkeletonView()
 {
@@ -77,11 +76,12 @@ void SkeletonView::show(){
 //    testMesh->setXExtent(10);
 //    testMesh->setYExtent(40);
 //    testMesh->setZExtent(20);
-    //    Qt3DCore::QEntity *testEntity = new Qt3DCore::QEntity(sceneRoot);
-    //    testEntity = new Qt3DCore::QEntity(testEntity);
-    //    testEntity->addComponent(testMesh);
-    //    testEntity->addComponent(modelMaterial);
-    //    testEntity->addComponent(this->testTransform);
+
+//    Qt3DCore::QEntity *testEntity = new Qt3DCore::QEntity(sceneRoot);
+//    testEntity = new Qt3DCore::QEntity(testEntity);
+//    testEntity->addComponent(testMesh);
+//    testEntity->addComponent(modelMaterial);
+//    testEntity->addComponent(this->testTransform);
 
 
 
@@ -103,17 +103,17 @@ void SkeletonView::show(){
     model->SetRightLowerLegRotation(modelOffsetRotation);
     model->SetHeadRotation(modelOffsetRotation);
 
-    QPushButton *calibrateButton = new QPushButton();
-    calibrateButton->setText("Remove Offset");
+    QPushButton *removeOffsetButton = new QPushButton();
+    removeOffsetButton->setText("Remove Offset");
 
-    QPushButton *resetDriftButton = new QPushButton();
-    resetDriftButton->setText("Reset z-Axis Drift");
+    QPushButton *removeDriftButton = new QPushButton();
+    removeDriftButton->setText("Remove Z-Axis Drift");
 
-    vLayout->addWidget(calibrateButton);
-    vLayout->addWidget(resetDriftButton);
+    vLayout->addWidget(removeOffsetButton);
+    vLayout->addWidget(removeDriftButton);
 
-    QObject::connect(calibrateButton, &QPushButton::clicked, this, &SkeletonView::calibrate);
-    QObject::connect(resetDriftButton, &QPushButton::clicked, this, &SkeletonView::resetZaxisDrift);
+    QObject::connect(removeOffsetButton, &QPushButton::clicked, this, &SkeletonView::removeOffset);
+    QObject::connect(removeDriftButton, &QPushButton::clicked, this, &SkeletonView::removeZaxisDrift);
 
     // Show window
     widget->show();
@@ -122,8 +122,9 @@ void SkeletonView::show(){
 
 void SkeletonView::vectorSample(quint64 deviceSerial, quint32 trackId, quint32 sampleNumber, QList<double> data)
 {
-     QString DeviceLabel = axiamoHelper->getDeviceLabel((deviceSerial));
-    //sensor hat eine "initial" position
+    //led nach oben beim anbringen an körper
+    //hinweis: kamera 180° gedreht
+    //sensor hat eine initiale position (x und y achse fix, z achse variabel)
     if(trackId == Quat9)
     {
         if(data.size() >= 4)
@@ -138,15 +139,11 @@ void SkeletonView::vectorSample(quint64 deviceSerial, quint32 trackId, quint32 s
 
             QQuaternion rotation(data[0], data[1], -data[3], data[2]);
             currentQuaternion = rotation;
-            //currentQuaternionWithOffsetCorrection =
 
-            rotation = rotation * invertedSensorOffsetRotation * modelOffsetRotation;
-            if(DeviceLabel == "leftLowerArm"){
-                model->SetLeftLowerArmRotation(rotation);
-            }else if(DeviceLabel == "leftUpperArm"){
-                model->SetLeftUpperArmRotation(rotation);
-            }
-//
+            rotation = invertedZAxisDriftRotation * rotation * invertedSensorOffsetRotation * modelOffsetRotation;
+
+            model->SetLeftLowerArmRotation(rotation);
+            //model->SetRightLowerArmRotation(rotation);
 //            QMatrix4x4 rotationMatrix = QMatrix4x4(rotation.toRotationMatrix());
 //            this->testTransform->setMatrix(rotationMatrix);
         }
@@ -194,27 +191,24 @@ void SkeletonView::setAxis(Qt3DCore::QEntity *sceneRoot)
     axisZEntity->addComponent(axisZtransform);
 }
 
-void SkeletonView::calibrate()
+void SkeletonView::removeOffset()
 {
+    // be in initial position for offset removal
     invertedSensorOffsetRotation = currentQuaternion.inverted();
-    //initialization = false;
-
-//    float pitch = 0;
-//    float yaw = 0;
-//    float roll = 0;
-//    currentQuaternion.getEulerAngles(&pitch, &yaw, &roll);
-
-//    yaw = 0;
-//    invertedOffsetRotation = QQuaternion::fromEulerAngles(pitch, yaw, roll).inverted();
 }
 
-void SkeletonView::resetZaxisDrift()
+void SkeletonView::removeZaxisDrift()
 {
+    // be in initial position for drift removal
+
+    // the resulting rotation (currentRotation * invertedSensorRotation) should be zero in initial position
+    // if there is a drift, the resulting rotation will be different to zero
+    QQuaternion drift = currentQuaternion * invertedSensorOffsetRotation;
     float pitch = 0;
     float yaw = 0;
     float roll = 0;
-    currentQuaternion.getEulerAngles(&pitch, &yaw, &roll);
+    drift.getEulerAngles(&pitch, &yaw, &roll);
     pitch = 0;
     roll = 0;
-    invertedZAxisRotation = QQuaternion::fromEulerAngles(pitch, yaw, roll).inverted();
+    invertedZAxisDriftRotation = QQuaternion::fromEulerAngles(pitch, yaw, roll).inverted();
 }

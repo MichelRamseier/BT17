@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += core gui
+QT       += widgets
 
 TARGET = RealPlay
 TEMPLATE = app
@@ -24,6 +26,15 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-win32:LIBS += D:\SVNcode\QtProj\RealPlay\lib\dhnetsdk.lib
-#unix:LIBS  += -L. -ldhdvr -ldhnetsdk -lpthread
-unix:LIBS  += -L. -ldhnetsdk -lpthread
+#win32:LIBS += D:\SVNcode\QtProj\RealPlay\lib\dhnetsdk.lib
+##unix:LIBS  += -L. -ldhdvr -ldhnetsdk -lpthread
+#unix:LIBS  += -L. -ldhnetsdk -lpthread
+
+win32:LIBS += '.\dhnetsdk.lib'
+#unix:LIBS  += -L. -ldhdvr -ldhnetsdk
+unix:LIBS  += -L. -ldhnetsdk
+
+unix:!macx: LIBS += -L$$PWD/../../DLL/ -lavnetsdk
+
+INCLUDEPATH += $$PWD/../../DLL
+DEPENDPATH += $$PWD/../../DLL

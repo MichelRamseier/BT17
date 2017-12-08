@@ -13,22 +13,27 @@ class CameraController : public QObject
 public:
     CameraController();
     ~CameraController();
+    void DriveCameraToPosition(double x, double y);
     void SetPosition(double x, double y);
 
 public slots:
     void playerLocationChanged(quint64, QVector3D);
 
 private:
-    void Login();
+    void Login(QString ip, long port, QString username, QString pw);
     bool SetLoginID(LLONG lLoginID);
     bool SetChannel(int nChannel);
     void InitData();
+    QList<QStringList> GetCamConfigs();
 
-    LLONG      m_lLoginHandle;
-    QTimer     *m_counter;
-    int        m_bMessageTip;
-    int        m_nChannelIndex;
-    int        m_nCtrlParam;
+    LLONG               m_lLoginHandle;
+    QTimer              *m_counter;
+    int                 m_bMessageTip;
+    int                 m_nChannelIndex;
+    int                 m_nCtrlParam;
+    double              cameraPositionX;
+    double              cameraPositionY;
+    QList<QStringList>  camConfigs;
 
 protected:
     LLONG   m_lLoginID;
