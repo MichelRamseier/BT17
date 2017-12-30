@@ -1,20 +1,15 @@
 #ifndef CAMERA_H
 #define CAMERA_H
-#include "cameracontroller.h"
-#include <QMessageBox>
-#include <QtMath>
-#include <QDebug>
-#include "UserDefine.h"
-#include <iostream>
-#include <qfile.h>
-#include <qdir.h>
-#include <camera.h>
+
+#include <QString>
+#include <QTimer>
 
 
-class camera
+class Camera
 {
 public:
-    camera(QString ip, long port, QString username, QString pw);
+    Camera(QString ip, long port, QString username, QString pw);
+    ~Camera();
 };
 
 #endif // CAMERA_H

@@ -14,6 +14,7 @@ CameraController::CameraController()
     //evtl. mit id des tag
     camConfigs = this->GetCamConfigs();
     this->InitData();
+    //cameras = new QList<Camera>();
     foreach (QStringList camConfig, camConfigs)
     {
         QString ip = camConfig[0];
@@ -23,7 +24,8 @@ CameraController::CameraController()
         int posx = camConfig[4].toInt();
         int posy = camConfig[5].toInt();
 
-        //camera cam = new camera(ip, port, username, pw);
+        //Camera *cam = new Camera(ip, port, username, pw);
+        //this->cameras->append(*cam);
 
         this->Login(ip, port, username, pw);
         this->SetPosition(posx, posy);
@@ -37,6 +39,7 @@ CameraController::~CameraController()
 
 void CALLBACK DisConnectFunc(LLONG lLoginID, char *pchDVRIP, LONG nDVRPort, LDWORD dwUser)
 {
+    //TODO: handle this stuff
 //    Dialog * pThis = (Dialog *)dwUser;
 //    if(NULL == pThis)
 //    {
@@ -66,7 +69,7 @@ void CameraController::InitData()
 
 void CameraController::Login(QString ip, long port, QString username, QString pw)
 {
-    QString strIp = "192.168.1.108";
+    QString strIp = "192.168.2.108";
     QString strUserName = "admin";
     long dvrPort = 37777;
     QString strPassword = "positioning";
@@ -141,8 +144,19 @@ void CameraController::SetPosition(double x, double y)
 }
 
 //kamera id; QPair
-void CameraController::DriveCameraToPosition(double x, double y)
+void CameraController::DriveCameraToPosition(QList<QList<double>> points, QList<QString> cameras)
 {
+    double sumOfX = 0;
+    double sumOfY = 0;
+    foreach (QList<double> point, points)
+    {
+        sumOfX += point[0];
+        sumOfY += point[1];
+    }
+
+    double x = sumOfX / points.length();
+    double y = sumOfY / points.length();
+
     if(m_lLoginID <=0 || m_nChannel < 0 )
     {
         return;
@@ -150,8 +164,6 @@ void CameraController::DriveCameraToPosition(double x, double y)
 
     // kamera id
     // drehung
-    // QMultiMedia?
-    // mehrere spieler, "mitte" ansteuern
     // zoom einstellen?
     // threading, QThread, Objekt in Thread verschieben
     // mehrere Kameras
@@ -197,8 +209,22 @@ void CameraController::DriveCameraToPosition(double x, double y)
     int nParam3 = zoom;
     bool bStop = false;
 
+    CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, DH_EXTPTZ_MOVE_CONTINUOUSLY, 0, 0, 0, bStop);
     CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, nParam1, nParam2, nParam3, bStop);
+    CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, 1000, 0, 1, bStop);
+
+    CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, 0, 0, 1, bStop);
+    CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, 1000, 0, 1, bStop);
+    CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, 0, 0, 1, bStop);
+    CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, 1000, 0, 1, bStop);
+    CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, 0, 0, 1, bStop);
+    CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, 1000, 0, 1, bStop);
+    CLIENT_DHPTZControlEx(m_lLoginID, m_nChannel, nType, 0, 0, 1, bStop);
+
+
+    qDebug() << "test";
 }
+
 
 QList<QStringList> CameraController::GetCamConfigs()
 {

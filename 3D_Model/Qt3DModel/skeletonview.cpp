@@ -4,8 +4,6 @@
 #define Quat6 0x0140
 #define Quat9 0x0141
 
-//bool initialization = true;
-
 
 SkeletonView::SkeletonView()
 {
@@ -83,6 +81,11 @@ void SkeletonView::show(){
 //    testEntity->addComponent(modelMaterial);
 //    testEntity->addComponent(this->testTransform);
 
+    //model->SetRightUpperArmRotation(finalLeftUpperArmQuaternion);
+    //model->SetRightLowerArmRotation(rotation);
+    //QMatrix4x4 rotationMatrix = QMatrix4x4(rotation.toRotationMatrix());
+    //this->testTransform->setMatrix(rotationMatrix);
+
 
 
 
@@ -106,14 +109,14 @@ void SkeletonView::show(){
     QPushButton *removeOffsetButton = new QPushButton();
     removeOffsetButton->setText("Remove Offset");
 
-    QPushButton *removeDriftButton = new QPushButton();
-    removeDriftButton->setText("Remove Z-Axis Drift");
+//    QPushButton *removeDriftButton = new QPushButton();
+//    removeDriftButton->setText("Remove Z-Axis Drift");
 
     vLayout->addWidget(removeOffsetButton);
-    vLayout->addWidget(removeDriftButton);
+    //vLayout->addWidget(removeDriftButton);
 
     QObject::connect(removeOffsetButton, &QPushButton::clicked, this, &SkeletonView::removeOffset);
-    QObject::connect(removeDriftButton, &QPushButton::clicked, this, &SkeletonView::removeZaxisDrift);
+    //QObject::connect(removeDriftButton, &QPushButton::clicked, this, &SkeletonView::removeZaxisDrift);
 
     // Show window
     widget->show();
@@ -124,28 +127,81 @@ void SkeletonView::vectorSample(quint64 deviceSerial, quint32 trackId, quint32 s
 {
     //led nach oben beim anbringen an körper
     //hinweis: kamera 180° gedreht
-    //sensor hat eine initiale position (x und y achse fix, z achse variabel)
+    //sensor hat eine initiale position (x und z-Achse fix, y-Achse variabel)
+
     if(trackId == Quat9)
     {
         if(data.size() >= 4)
         {
-            //      |z /
-            //      | /
-            //      |/
-            //-------------y
-            //     /|
-            //    / |
-            //   /x |
-
             QQuaternion rotation(data[0], data[1], -data[3], data[2]);
-            currentQuaternion = rotation;
 
-            rotation = invertedZAxisDriftRotation * rotation * invertedSensorOffsetRotation * modelOffsetRotation;
+            // Oberarm Links
+            if(deviceSerial == 2615221423530695350)
+            {
+                //  HACK: set right instead of left rotation, otherwise the model don't act as desired
+                currentRightUpperArmQuaternion = rotation;
+                finalRightUpperArmQuaternion = currentRightUpperArmQuaternion * invertedRightUpperArmOffset;
+            }
+            //Unterarm Rechts
+            else if(deviceSerial == 2630769608869141230)
+            {
+                //  HACK: set left instead of right rotation, otherwise the model don't act as desired
+                currentLeftLowerArmQuaternion = rotation;
+                finalLeftLowerArmQuaternion = currentLeftLowerArmQuaternion * invertedLeftLowerArmOffset;
+            }
+            //Oberarm Rechts
+            else if(deviceSerial == 2630769608869141119)
+            {
+                //  HACK: set left instead of right rotation, otherwise the model don't act as desired
+                currentLeftUpperArmQuaternion = rotation;
+                finalLeftUpperArmQuaternion = currentLeftUpperArmQuaternion * invertedLeftUpperArmOffset;
+            }
+            //Unterarm Links
+            else if(deviceSerial == 2652720250416126580)
+            {
+                //  HACK: set right instead of left rotation, otherwise the model don't act as desired
+                currentRightLowerArmQuaternion = rotation;
+                finalRightLowerArmQuaternion = currentRightLowerArmQuaternion * invertedRightLowerArmOffset;
+            }
+            //Rumpf
+            else if(deviceSerial == 2660762074166713025)
+            {
+                currentCenterQuaternion = rotation;
+                finalCenterQuaternion = currentCenterQuaternion * invertedCenterOffset;
+            }
+            //Bein Rechts Oben
+            else if(deviceSerial == 0)
+            {
 
-            model->SetLeftLowerArmRotation(rotation);
-            //model->SetRightLowerArmRotation(rotation);
-//            QMatrix4x4 rotationMatrix = QMatrix4x4(rotation.toRotationMatrix());
-//            this->testTransform->setMatrix(rotationMatrix);
+            }
+            //Bein Rechts Unten
+            else if(deviceSerial == 0)
+            {
+
+            }
+            //Bein Links Oben
+            else if(deviceSerial == 0)
+            {
+
+            }
+            //Bein Links Unten
+            else if(deviceSerial == 0)
+            {
+
+            }
+
+            model->SetCenterRotation(finalCenterQuaternion * modelOffsetRotation);
+            model->SetLeftUpperArmRotation(finalLeftUpperArmQuaternion * modelOffsetRotation);
+            model->SetLeftLowerArmRotation(finalLeftLowerArmQuaternion * modelOffsetRotation);
+            model->SetRightUpperArmRotation(finalRightUpperArmQuaternion * modelOffsetRotation);
+            model->SetRightLowerArmRotation(finalRightLowerArmQuaternion * modelOffsetRotation);
+            model->SetLeftUpperLegRotation(finalLeftUpperLegQuaternion * modelOffsetRotation);
+            model->SetLeftLowerLegRotation(finalLeftLowerLegQuaternion * modelOffsetRotation);
+            model->SetRightUpperLegRotation(finalRightUpperLegQuaternion * modelOffsetRotation);
+            model->SetRightLowerLegRotation(finalRightLowerLegQuaternion * modelOffsetRotation);
+
+            //add finalHeadQuaternion if needed
+            model->SetHeadRotation(modelOffsetRotation);
         }
     }
 }
@@ -193,8 +249,15 @@ void SkeletonView::setAxis(Qt3DCore::QEntity *sceneRoot)
 
 void SkeletonView::removeOffset()
 {
-    // be in initial position for offset removal
-    invertedSensorOffsetRotation = currentQuaternion.inverted();
+    invertedLeftLowerArmOffset = currentLeftLowerArmQuaternion.inverted();
+    invertedLeftUpperArmOffset = currentLeftUpperArmQuaternion.inverted();
+    invertedRightLowerArmOffset = currentRightLowerArmQuaternion.inverted();
+    invertedRightUpperArmOffset = currentRightUpperArmQuaternion.inverted();
+    invertedCenterOffset = currentCenterQuaternion.inverted();
+    invertedLeftLowerLegOffset = currentLeftLowerLegQuaternion.inverted();
+    invertedLeftUpperLegOffset = currentLeftUpperLegQuaternion.inverted();
+    invertedRightLowerLegOffset = currentRightLowerLegQuaternion.inverted();
+    invertedRightUpperLegOffset = currentRightUpperLegQuaternion.inverted();
 }
 
 void SkeletonView::removeZaxisDrift()
@@ -203,12 +266,12 @@ void SkeletonView::removeZaxisDrift()
 
     // the resulting rotation (currentRotation * invertedSensorRotation) should be zero in initial position
     // if there is a drift, the resulting rotation will be different to zero
-    QQuaternion drift = currentQuaternion * invertedSensorOffsetRotation;
+    //QQuaternion drift = currentQuaternion * invertedSensorOffsetRotation;
     float pitch = 0;
     float yaw = 0;
     float roll = 0;
-    drift.getEulerAngles(&pitch, &yaw, &roll);
+    //drift.getEulerAngles(&pitch, &yaw, &roll);
     pitch = 0;
     roll = 0;
-    invertedZAxisDriftRotation = QQuaternion::fromEulerAngles(pitch, yaw, roll).inverted();
+    //invertedZAxisDriftRotation = QQuaternion::fromEulerAngles(pitch, yaw, roll).inverted();
 }

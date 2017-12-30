@@ -86,10 +86,36 @@ private:
     //Qt3DExtras::Qt3DWindow view;
     Model *model;
     QQuaternion modelOffsetRotation;
-    QQuaternion invertedSensorOffsetRotation;
-    QQuaternion currentQuaternion;
-    QQuaternion invertedZAxisDriftRotation;
 
+    QQuaternion invertedLeftUpperArmOffset;
+    QQuaternion invertedLeftLowerArmOffset;
+    QQuaternion invertedRightUpperArmOffset;
+    QQuaternion invertedRightLowerArmOffset;
+    QQuaternion invertedCenterOffset;
+    QQuaternion invertedLeftUpperLegOffset;
+    QQuaternion invertedLeftLowerLegOffset;
+    QQuaternion invertedRightUpperLegOffset;
+    QQuaternion invertedRightLowerLegOffset;
+
+    QQuaternion currentLeftUpperArmQuaternion;
+    QQuaternion currentLeftLowerArmQuaternion;
+    QQuaternion currentRightUpperArmQuaternion;
+    QQuaternion currentRightLowerArmQuaternion;
+    QQuaternion currentCenterQuaternion;
+    QQuaternion currentLeftUpperLegQuaternion;
+    QQuaternion currentLeftLowerLegQuaternion;
+    QQuaternion currentRightUpperLegQuaternion;
+    QQuaternion currentRightLowerLegQuaternion;
+
+    QQuaternion finalLeftUpperArmQuaternion;
+    QQuaternion finalLeftLowerArmQuaternion;
+    QQuaternion finalRightUpperArmQuaternion;
+    QQuaternion finalRightLowerArmQuaternion;
+    QQuaternion finalCenterQuaternion;
+    QQuaternion finalLeftUpperLegQuaternion;
+    QQuaternion finalLeftLowerLegQuaternion;
+    QQuaternion finalRightUpperLegQuaternion;
+    QQuaternion finalRightLowerLegQuaternion;
 };
 
 #endif // SKELETONVIEW_H

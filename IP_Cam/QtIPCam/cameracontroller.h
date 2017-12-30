@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QTimer>
+#include "camera.h"
 #include "dhnetsdk.h"
 
 class CameraController
@@ -10,7 +11,7 @@ class CameraController
 public:
     CameraController();
     ~CameraController();
-    void DriveCameraToPosition(double x, double y);
+    void DriveCameraToPosition(QList<QList<double>> points, QList<QString> cameras);
     void SetPosition(double x, double y);
 
 private:
@@ -28,6 +29,7 @@ private:
     double              cameraPositionX;
     double              cameraPositionY;
     QList<QStringList>  camConfigs;
+    //QList<Camera>       *cameras;
 
 protected:
     LLONG   m_lLoginID;
