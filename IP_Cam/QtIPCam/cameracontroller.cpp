@@ -256,3 +256,9 @@ QList<QStringList> CameraController::GetCamConfigs()
 
     return camConfigs;
 }
+
+void CameraController::playerLocationChanged(quint64 id, QVector3D location)
+{
+    qDebug() << " position for player " << id << " is set to: " << location;
+    SetPosition(location.x(),location.y());
+}
