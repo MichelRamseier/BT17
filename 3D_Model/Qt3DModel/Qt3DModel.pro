@@ -1,15 +1,14 @@
 QT += 3dcore 3drender 3dinput 3dextras
+QT += widgets
 
 HEADERS += \
-    model.h
+    model.h \
+    skeletonview.h
 
 SOURCES += \
     main.cpp \
-    model.cpp
+    model.cpp \
+    skeletonview.cpp
 
-#RESOURCES += \
-#    ../exampleresources/chest.qrc \
-#    ../exampleresources/houseplants.qrc \
-#    ../exampleresources/metalbarrel.qrc \
-#    ../exampleresources/obj.qrc \
-#    ../exampleresources/textures.qrc
+RESOURCES += \
+    model.qrc

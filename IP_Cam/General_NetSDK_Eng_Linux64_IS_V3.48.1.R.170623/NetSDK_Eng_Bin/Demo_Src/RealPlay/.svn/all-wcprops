@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svnpl/SDKProductLine/!svn/ver/21812/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay
+END
+UserDefine.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay/UserDefine.h
+END
+mainwindow.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay/mainwindow.h
+END
+config.ini
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay/config.ini
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay/main.cpp
+END
+RealPlay.pro
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnpl/SDKProductLine/!svn/ver/18743/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay/RealPlay.pro
+END
+mainwindow.ui
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay/mainwindow.ui
+END
+dhnetsdk.h
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay/dhnetsdk.h
+END
+ReadMe.txt
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay/ReadMe.txt
+END
+mainwindow.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnpl/SDKProductLine/!svn/ver/21812/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay/mainwindow.cpp
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/RealPlay/Makefile
+END

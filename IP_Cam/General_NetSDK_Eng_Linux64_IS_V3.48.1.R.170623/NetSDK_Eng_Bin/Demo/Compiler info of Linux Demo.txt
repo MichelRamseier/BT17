@@ -1,0 +1,16 @@
+【Compiler】
+------------------------------------
+1- Linux32
+	Linux version: CentOS release 5.9(Final)
+	gcc version: 4.1.2 
+	Demos developed by Qt: Qt version is 4.6.0, QMake version 2.01a    
+
+2- Linux64
+	Linux version: CentOS release 6.6(Final)
+	gcc version: 4.4.7
+	Demos developed by Qt: Qt version is 4.6.2, QMake version 2.01a
+	
+
+
+
+

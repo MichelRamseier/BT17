@@ -1,4 +1,5 @@
 #include "model.h"
+#include <Qt3DRender/QMesh>
 
 
 Model::Model(Qt3DCore::QEntity *sceneRoot)
@@ -14,26 +15,38 @@ QMatrix4x4 Model::GetTranslationMatrix(float x, float y, float z)
                       ,0,0,0,1);
 }
 
+QMatrix4x4 Model::GetTranslationMatrix(QVector4D vector)
+{
+    return QMatrix4x4(1,0,0,vector.x(),
+                      0,1,0,vector.y(),
+                      0,0,1,vector.z(),
+                      0,0,0,vector.w());
+}
+
 
 void Model::Initialize()
 {
-    float centerLength = 4;
-    Qt3DExtras::QCylinderMesh *centerMesh = new Qt3DExtras::QCylinderMesh();
-    centerMesh->setRadius(0.3f);
-    centerMesh->setLength(centerLength);
-    centerMesh->setRings(100);
-    centerMesh->setSlices(20);
+    // Points from Blender
+    this->connectorHeadCenterOrigin = QVector4D(-0.29, 14.8, -2.58, 1);
+    this->connectorCenterAndLeftUpperArmOrigin = QVector4D(-5.65, 10.84, -1.53, 1);
+    this->connectorCenterAndRightUpperArmOrigin = QVector4D(5.65, 10.84, -1.53, 1);
+    this->connectorRightUpperAndLowerArmOrigin = QVector4D(9.91, 0.2, -4, 1);
+    this->connectorLeftUpperAndLowerArmOrigin = QVector4D(-9.91, 0.2, -4, 1);
+    this->connectorCenterAndLeftUpperLegOrigin = QVector4D(-3.3, -7.6, 0.47, 1);
+    this->connectorCenterAndRightUpperLegOrigin = QVector4D(3.3, -7.6, 0.47, 1);
+    this->connectorRightUpperAndLowerLegOrigin = QVector4D(3.58,-24.55,-1.12, 1);
+    this->connectorLeftUpperAndLowerLegOrigin = QVector4D(-3.58, -24.55, -1.12, 1);
 
-    float bodyPartLength = 2;
-    Qt3DExtras::QCylinderMesh *modelMesh = new Qt3DExtras::QCylinderMesh();
-    modelMesh->setRadius(0.3f);
-    modelMesh->setLength(bodyPartLength);
-    modelMesh->setRings(10);
-    modelMesh->setSlices(20);
 
-    float headRadius = 0.5;
-    Qt3DExtras::QSphereMesh *headMesh = new Qt3DExtras::QSphereMesh();
-    headMesh->setRadius(headRadius);
+    this->connectorHeadCenterTMOrigin = this->GetTranslationMatrix(this->connectorHeadCenterOrigin);
+    this->connectorCenterAndLeftUpperArmTMOrigin = this->GetTranslationMatrix(this->connectorCenterAndLeftUpperArmOrigin);
+    this->connectorCenterAndRightUpperArmTMOrigin = this->GetTranslationMatrix(this->connectorCenterAndRightUpperArmOrigin);
+    this->connectorRightUpperAndLowerArmTMOrigin = this->GetTranslationMatrix(this->connectorRightUpperAndLowerArmOrigin);
+    this->connectorLeftUpperAndLowerArmTMOrigin = this->GetTranslationMatrix(this->connectorLeftUpperAndLowerArmOrigin);
+    this->connectorCenterAndLeftUpperLegTMOrigin = this->GetTranslationMatrix(this->connectorCenterAndLeftUpperLegOrigin);
+    this->connectorCenterAndRightUpperLegTMOrigin = this->GetTranslationMatrix(this->connectorCenterAndRightUpperLegOrigin);
+    this->connectorRightUpperAndLowerLegTMOrigin = this->GetTranslationMatrix(this->connectorRightUpperAndLowerLegOrigin);
+    this->connectorLeftUpperAndLowerLegTMOrigin = this->GetTranslationMatrix(this->connectorLeftUpperAndLowerLegOrigin);
 
     this->centerTransform = new Qt3DCore::QTransform();
     this->leftLowerArmTransform = new Qt3DCore::QTransform();
@@ -46,226 +59,226 @@ void Model::Initialize()
     this->rightLowerLegTransform = new Qt3DCore::QTransform();
     this->headTransform = new Qt3DCore::QTransform();
 
-    QVector3D offsetT = QVector3D(0, bodyPartLength/2, 0);
-    QVector3D headOffsetT = QVector3D(0, headRadius/2, 0);
-    QVector3D headT = QVector3D(0, 1, 0);
+    Qt3DExtras::QPhongMaterial *phongMaterial = new Qt3DExtras::QPhongMaterial();
+    phongMaterial->setDiffuse(QColor(QRgb(0x69F024)));
 
-    this->offsetTM = GetTranslationMatrix(offsetT.x(),
-                                          offsetT.y(),
-                                          offsetT.z());
-    this->headOffsetTM = GetTranslationMatrix(headOffsetT.x(),
-                                              headOffsetT.y(),
-                                              headOffsetT.z());
-    this->headTM = GetTranslationMatrix(headT.x(),
-                                        headT.y(),
-                                        headT.z());
+    Qt3DRender::QMesh *rightLowerLegMesh = new Qt3DRender::QMesh();
+    rightLowerLegMesh->setSource(QUrl("qrc:assets/rightlowerleg.obj"));
+    Qt3DCore::QEntity *rightLowerLegEntity = new Qt3DCore::QEntity(sceneRoot);
+    rightLowerLegEntity = new Qt3DCore::QEntity(rightLowerLegEntity);
+    rightLowerLegEntity->addComponent(rightLowerLegMesh);
+    rightLowerLegEntity->addComponent(phongMaterial);
+    rightLowerLegEntity->addComponent(rightLowerLegTransform);
 
-    this->topCenterOrigin = QVector4D(0,centerLength/2,0,1);
-    this->bottomCenterOrigin = QVector4D(0,(centerLength/2)*-1,0,1);
-    this->connectorLeftUpperAndLowerArmOrigin = QVector4D(bodyPartLength*-1,0,0,1);
-    this->connectorRightUpperAndLowerArmOrigin = QVector4D(bodyPartLength,0,0,1);
-    this->connectorLeftUpperAndLowerLegOrigin = QVector4D(bodyPartLength*-1,0,0,1);
-    this->connectorRightUpperAndLowerLegOrigin = QVector4D(bodyPartLength,0,0,1);
+    Qt3DRender::QMesh *rightUpperLegMesh = new Qt3DRender::QMesh();
+    rightUpperLegMesh->setSource(QUrl("qrc:assets/rightupperleg.obj"));
+    Qt3DCore::QEntity *rightUpperLegEntity = new Qt3DCore::QEntity(sceneRoot);
+    rightUpperLegEntity = new Qt3DCore::QEntity(rightUpperLegEntity);
+    rightUpperLegEntity->addComponent(rightUpperLegMesh);
+    rightUpperLegEntity->addComponent(phongMaterial);
+    rightUpperLegEntity->addComponent(rightUpperLegTransform);
 
-    QQuaternion headQ = QQuaternion::fromAxisAndAngle(0,0,1,0);
-    QQuaternion centerOffsetQ = QQuaternion::fromAxisAndAngle(0,0,1,0);
+    Qt3DRender::QMesh *leftLowerLegMesh = new Qt3DRender::QMesh();
+    leftLowerLegMesh->setSource(QUrl("qrc:assets/leftlowerleg.obj"));
+    Qt3DCore::QEntity *leftLowerLegEntity = new Qt3DCore::QEntity(sceneRoot);
+    leftLowerLegEntity = new Qt3DCore::QEntity(leftLowerLegEntity);
+    leftLowerLegEntity->addComponent(leftLowerLegMesh);
+    leftLowerLegEntity->addComponent(phongMaterial);
+    leftLowerLegEntity->addComponent(leftLowerLegTransform);
 
-    QQuaternion luaOffsetQ = QQuaternion::fromAxisAndAngle(0,0,1,90);
-    QQuaternion llaOffsetQ = QQuaternion::fromAxisAndAngle(0,0,1,90);
-    QQuaternion ruaOffsetQ = QQuaternion::fromAxisAndAngle(0,0,1,-90);
-    QQuaternion rlaOffsetQ = QQuaternion::fromAxisAndAngle(0,0,1,-90);
+    Qt3DRender::QMesh *leftUpperLegMesh = new Qt3DRender::QMesh();
+    leftUpperLegMesh->setSource(QUrl("qrc:assets/leftupperleg.obj"));
+    Qt3DCore::QEntity *leftUpperLegEntity = new Qt3DCore::QEntity(sceneRoot);
+    leftUpperLegEntity = new Qt3DCore::QEntity(leftUpperLegEntity);
+    leftUpperLegEntity->addComponent(leftUpperLegMesh);
+    leftUpperLegEntity->addComponent(phongMaterial);
+    leftUpperLegEntity->addComponent(leftUpperLegTransform);
 
-    this->luaOffsetRM = QMatrix4x4(luaOffsetQ.toRotationMatrix());
-    this->llaOffsetRM = QMatrix4x4(llaOffsetQ.toRotationMatrix());
-    this->ruaOffsetRM = QMatrix4x4(ruaOffsetQ.toRotationMatrix());
-    this->rlaOffsetRM = QMatrix4x4(rlaOffsetQ.toRotationMatrix());
-
-    QQuaternion lulOffsetQ = QQuaternion::fromAxisAndAngle(0,0,1,90);
-    QQuaternion lllOffsetQ = QQuaternion::fromAxisAndAngle(0,0,1,90);
-    QQuaternion rulOffsetQ = QQuaternion::fromAxisAndAngle(0,0,1,-90);
-    QQuaternion rllOffsetQ = QQuaternion::fromAxisAndAngle(0,0,1,-90);
-
-    this->lulOffsetRM = QMatrix4x4(lulOffsetQ.toRotationMatrix());
-    this->lllOffsetRM = QMatrix4x4(lllOffsetQ.toRotationMatrix());
-    this->rulOffsetRM = QMatrix4x4(rulOffsetQ.toRotationMatrix());
-    this->rllOffsetRM = QMatrix4x4(rllOffsetQ.toRotationMatrix());
-
-    // set defaults
-    this->SetCenterRotation(centerOffsetQ);
-    this->SetHeadRotation(headQ);
-    this->SetLeftUpperArmRotation(luaOffsetQ);
-    this->SetLeftLowerArmRotation(llaOffsetQ);
-    this->SetRightUpperArmRotation(ruaOffsetQ);
-    this->SetRightLowerArmRotation(rlaOffsetQ);
-    this->SetLeftUpperLegRotation(lulOffsetQ);
-    this->SetLeftLowerLegRotation(lllOffsetQ);
-    this->SetRightUpperLegRotation(rulOffsetQ);
-    this->SetRightLowerLegRotation(rllOffsetQ);
-
-    Qt3DExtras::QPhongMaterial *modelMaterial = new Qt3DExtras::QPhongMaterial();
-    modelMaterial->setDiffuse(QColor(QRgb(0x34F247)));
-
-    Qt3DCore::QEntity *centerEntity = new Qt3DCore::QEntity(this->sceneRoot);
+    Qt3DRender::QMesh *centerMesh = new Qt3DRender::QMesh();
+    centerMesh->setSource(QUrl("qrc:assets/center.obj"));
+    Qt3DCore::QEntity *centerEntity = new Qt3DCore::QEntity(sceneRoot);
     centerEntity = new Qt3DCore::QEntity(centerEntity);
     centerEntity->addComponent(centerMesh);
-    centerEntity->addComponent(modelMaterial);
-    centerEntity->addComponent(centerTransform);
+    centerEntity->addComponent(phongMaterial);
+    centerEntity->addComponent(this->centerTransform);
 
-    Qt3DCore::QEntity *leftArmEntity = new Qt3DCore::QEntity(this->sceneRoot);
-    leftArmEntity = new Qt3DCore::QEntity(leftArmEntity);
-    leftArmEntity->addComponent(modelMesh);
-    leftArmEntity->addComponent(modelMaterial);
-    leftArmEntity->addComponent(this->leftUpperArmTransform);
-
-    Qt3DCore::QEntity *leftForearmEntity = new Qt3DCore::QEntity(this->sceneRoot);
-    leftForearmEntity = new Qt3DCore::QEntity(leftForearmEntity);
-    leftForearmEntity->addComponent(modelMesh);
-    leftForearmEntity->addComponent(modelMaterial);
-    leftForearmEntity->addComponent(this->leftLowerArmTransform);
-
-    Qt3DCore::QEntity *rightUpperArmEntity = new Qt3DCore::QEntity(this->sceneRoot);
-    rightUpperArmEntity = new Qt3DCore::QEntity(rightUpperArmEntity);
-    rightUpperArmEntity->addComponent(modelMesh);
-    rightUpperArmEntity->addComponent(modelMaterial);
-    rightUpperArmEntity->addComponent(this->rightUpperArmTransform);
-
-    Qt3DCore::QEntity *rightLowerArmEntity = new Qt3DCore::QEntity(this->sceneRoot);
-    rightLowerArmEntity = new Qt3DCore::QEntity(rightLowerArmEntity);
-    rightLowerArmEntity->addComponent(modelMesh);
-    rightLowerArmEntity->addComponent(modelMaterial);
-    rightLowerArmEntity->addComponent(this->rightLowerArmTransform);
-
-    Qt3DCore::QEntity *leftThighEntity = new Qt3DCore::QEntity(this->sceneRoot);
-    leftThighEntity = new Qt3DCore::QEntity(leftThighEntity);
-    leftThighEntity->addComponent(modelMesh);
-    leftThighEntity->addComponent(modelMaterial);
-    leftThighEntity->addComponent(this->leftUpperLegTransform);
-
-    Qt3DCore::QEntity *leftLegEntity = new Qt3DCore::QEntity(this->sceneRoot);
-    leftLegEntity = new Qt3DCore::QEntity(leftLegEntity);
-    leftLegEntity->addComponent(modelMesh);
-    leftLegEntity->addComponent(modelMaterial);
-    leftLegEntity->addComponent(this->leftLowerLegTransform);
-
-    Qt3DCore::QEntity *rightThighEntity = new Qt3DCore::QEntity(this->sceneRoot);
-    rightThighEntity = new Qt3DCore::QEntity(rightThighEntity);
-    rightThighEntity->addComponent(modelMesh);
-    rightThighEntity->addComponent(modelMaterial);
-    rightThighEntity->addComponent(this->rightUpperLegTransform);
-
-    Qt3DCore::QEntity *rightLegEntity = new Qt3DCore::QEntity(this->sceneRoot);
-    rightLegEntity = new Qt3DCore::QEntity(rightLegEntity);
-    rightLegEntity->addComponent(modelMesh);
-    rightLegEntity->addComponent(modelMaterial);
-    rightLegEntity->addComponent(this->rightLowerLegTransform);
-
-    Qt3DCore::QEntity *headEntity = new Qt3DCore::QEntity(this->sceneRoot);
+    Qt3DRender::QMesh *headMesh = new Qt3DRender::QMesh();
+    headMesh->setSource(QUrl("qrc:assets/head.obj"));
+    Qt3DCore::QEntity *headEntity = new Qt3DCore::QEntity(sceneRoot);
     headEntity = new Qt3DCore::QEntity(headEntity);
     headEntity->addComponent(headMesh);
-    headEntity->addComponent(modelMaterial);
-    headEntity->addComponent(this->headTransform);
+    headEntity->addComponent(phongMaterial);
+    headEntity->addComponent(headTransform);
+
+    Qt3DRender::QMesh *leftLowerArmMesh = new Qt3DRender::QMesh();
+    leftLowerArmMesh->setSource(QUrl("qrc:assets/leftlowerarm.obj"));
+    Qt3DCore::QEntity *leftLowerArmEntity = new Qt3DCore::QEntity(sceneRoot);
+    leftLowerArmEntity = new Qt3DCore::QEntity(leftLowerArmEntity);
+    leftLowerArmEntity->addComponent(leftLowerArmMesh);
+    leftLowerArmEntity->addComponent(phongMaterial);
+    leftLowerArmEntity->addComponent(leftLowerArmTransform);
+
+    Qt3DRender::QMesh *leftUpperArmMesh = new Qt3DRender::QMesh();
+    leftUpperArmMesh->setSource(QUrl("qrc:assets/leftupperarm.obj"));
+    Qt3DCore::QEntity *leftUpperArmEntity = new Qt3DCore::QEntity(sceneRoot);
+    leftUpperArmEntity = new Qt3DCore::QEntity(leftUpperArmEntity);
+    leftUpperArmEntity->addComponent(leftUpperArmMesh);
+    leftUpperArmEntity->addComponent(phongMaterial);
+    leftUpperArmEntity->addComponent(this->leftUpperArmTransform);
+
+    Qt3DRender::QMesh *rightLowerArmMesh = new Qt3DRender::QMesh();
+    rightLowerArmMesh->setSource(QUrl("qrc:assets/rightlowerarm.obj"));
+    Qt3DCore::QEntity *rightLowerArmEntity = new Qt3DCore::QEntity(sceneRoot);
+    rightLowerArmEntity = new Qt3DCore::QEntity(rightLowerArmEntity);
+    rightLowerArmEntity->addComponent(rightLowerArmMesh);
+    rightLowerArmEntity->addComponent(phongMaterial);
+    rightLowerArmEntity->addComponent(rightLowerArmTransform);
+
+    Qt3DRender::QMesh *rightUpperArmMesh = new Qt3DRender::QMesh();
+    rightUpperArmMesh->setSource(QUrl("qrc:assets/rightupperarm.obj"));
+    Qt3DCore::QEntity *rightUpperArmEntity = new Qt3DCore::QEntity(sceneRoot);
+    rightUpperArmEntity = new Qt3DCore::QEntity(rightUpperArmEntity);
+    rightUpperArmEntity->addComponent(rightUpperArmMesh);
+    rightUpperArmEntity->addComponent(phongMaterial);
+    rightUpperArmEntity->addComponent(rightUpperArmTransform);
 }
 
 void Model::SetCenterRotation(QQuaternion quaternion)
 {
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
     this->centerTransform->setMatrix(rotationMatrix);
-    QVector4D topCenter = rotationMatrix * this->topCenterOrigin;
-    this->topCenterTM = GetTranslationMatrix(topCenter.x(),
-                                             topCenter.y(),
-                                             topCenter.z());
+    QVector4D connectorCenterAndLeftUpperArm = rotationMatrix * this->connectorCenterAndLeftUpperArmOrigin;
+    this->connectorCenterAndLeftUpperArmTM = GetTranslationMatrix(connectorCenterAndLeftUpperArm.x(),
+                                                                  connectorCenterAndLeftUpperArm.y(),
+                                                                  connectorCenterAndLeftUpperArm.z());
 
-    QVector4D bottomCenter = rotationMatrix * this->bottomCenterOrigin;
-    this->bottomCenterTM = GetTranslationMatrix(bottomCenter.x(),
-                                                bottomCenter.y(),
-                                                bottomCenter.z());
+    QVector4D connectorCenterAndRightUpperArm = rotationMatrix * this->connectorCenterAndRightUpperArmOrigin;
+    this->connectorCenterAndRightUpperArmTM = GetTranslationMatrix(connectorCenterAndRightUpperArm.x(),
+                                                                   connectorCenterAndRightUpperArm.y(),
+                                                                   connectorCenterAndRightUpperArm.z());
 
-    //update all other segments, because this is the center
-    SetLeftUpperArmRotation(quaternion);
-    SetLeftLowerArmRotation(quaternion);
-    SetRightUpperArmRotation(quaternion);
-    SetRightLowerArmRotation(quaternion);
-    SetLeftUpperLegRotation(quaternion);
-    SetLeftLowerLegRotation(quaternion);
-    SetRightUpperLegRotation(quaternion);
-    SetRightLowerLegRotation(quaternion);
-    SetHeadRotation(quaternion);
+    QVector4D connectorCenterAndLeftUpperLeg = rotationMatrix * this->connectorCenterAndLeftUpperLegOrigin;
+    this->connectorCenterAndLeftUpperLegTM = GetTranslationMatrix(connectorCenterAndLeftUpperLeg.x(),
+                                                                  connectorCenterAndLeftUpperLeg.y(),
+                                                                  connectorCenterAndLeftUpperLeg.z());
+
+    QVector4D connectorCenterAndRightUpperLeg = rotationMatrix * this->connectorCenterAndRightUpperLegOrigin;
+    this->connectorCenterAndRightUpperLegTM = GetTranslationMatrix(connectorCenterAndRightUpperLeg.x(),
+                                                                   connectorCenterAndRightUpperLeg.y(),
+                                                                   connectorCenterAndRightUpperLeg.z());
+
+    QVector4D connectorRightUpperAndLowerArm = rotationMatrix * this->connectorRightUpperAndLowerArmOrigin;
+    this->connectorRightUpperAndLowerArmTM = GetTranslationMatrix(connectorRightUpperAndLowerArm.x(),
+                                                                   connectorRightUpperAndLowerArm.y(),
+                                                                   connectorRightUpperAndLowerArm.z());
+
+    QVector4D connectorLeftUpperAndLowerArm = rotationMatrix * this->connectorLeftUpperAndLowerArmOrigin;
+    this->connectorLeftUpperAndLowerArmTM = GetTranslationMatrix(connectorLeftUpperAndLowerArm.x(),
+                                                                   connectorLeftUpperAndLowerArm.y(),
+                                                                   connectorLeftUpperAndLowerArm.z());
+
+    QVector4D connectorRightUpperAndLowerLeg = rotationMatrix * this->connectorRightUpperAndLowerLegOrigin;
+    this->connectorRightUpperAndLowerLegTM = GetTranslationMatrix(connectorRightUpperAndLowerLeg.x(),
+                                                                   connectorRightUpperAndLowerLeg.y(),
+                                                                   connectorRightUpperAndLowerLeg.z());
+
+    QVector4D connectorLeftUpperAndLowerLeg = rotationMatrix * this->connectorLeftUpperAndLowerLegOrigin;
+    this->connectorLeftUpperAndLowerLegTM = GetTranslationMatrix(connectorLeftUpperAndLowerLeg.x(),
+                                                                   connectorLeftUpperAndLowerLeg.y(),
+                                                                   connectorLeftUpperAndLowerLeg.z());
+
+    QVector4D connectorHeadCenter = rotationMatrix * this->connectorHeadCenterOrigin;
+    this->connectorHeadCenterTM = GetTranslationMatrix(connectorHeadCenter.x(),
+                                                        connectorHeadCenter.y(),
+                                                        connectorHeadCenter.z());
+
+    this->leftUpperArmTransform->setMatrix(this->connectorCenterAndLeftUpperArmTM * this->connectorCenterAndLeftUpperArmTMOrigin.inverted());
+    this->leftLowerArmTransform->setMatrix(this->connectorCenterAndLeftUpperArmTM * this->connectorCenterAndLeftUpperArmTMOrigin.inverted());
+    this->rightUpperArmTransform->setMatrix(this->connectorCenterAndRightUpperArmTM * this->connectorCenterAndRightUpperArmTMOrigin.inverted());
+    this->rightLowerArmTransform->setMatrix(this->connectorCenterAndRightUpperArmTM * this->connectorCenterAndRightUpperArmTMOrigin.inverted());
+    this->leftUpperLegTransform->setMatrix(this->connectorCenterAndLeftUpperLegTM * this->connectorCenterAndLeftUpperLegTMOrigin.inverted());
+    this->leftLowerLegTransform->setMatrix(this->connectorCenterAndLeftUpperLegTM * this->connectorCenterAndLeftUpperLegTMOrigin.inverted());
+    this->rightUpperLegTransform->setMatrix(this->connectorCenterAndRightUpperLegTM * this->connectorCenterAndRightUpperLegTMOrigin.inverted());
+    this->rightLowerLegTransform->setMatrix(this->connectorCenterAndRightUpperLegTM * this->connectorCenterAndRightUpperLegTMOrigin.inverted());
+    this->headTransform->setMatrix(this->connectorHeadCenterTM * this->connectorHeadCenterTMOrigin.inverted());
 }
 
 void Model::SetLeftUpperArmRotation(QQuaternion quaternion)
 {
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-    this->leftUpperArmTransform->setMatrix(this->topCenterTM * rotationMatrix * this->luaOffsetRM * this->offsetTM);
-    QVector4D connectorLeftUpperAndLowerArm = rotationMatrix * this->connectorLeftUpperAndLowerArmOrigin;
+    this->leftUpperArmTransform->setMatrix(this->connectorCenterAndLeftUpperArmTM * rotationMatrix * this->connectorCenterAndLeftUpperArmTMOrigin.inverted());
+
+    //update child
+    QVector4D connectorLeftUpperAndLowerArm = this->connectorCenterAndLeftUpperArmTM * rotationMatrix * this->connectorCenterAndLeftUpperArmTMOrigin.inverted() * this->connectorLeftUpperAndLowerArmOrigin;
     this->connectorLeftUpperAndLowerArmTM = GetTranslationMatrix(connectorLeftUpperAndLowerArm.x(),
                                                                  connectorLeftUpperAndLowerArm.y(),
                                                                  connectorLeftUpperAndLowerArm.z());
 
-    SetLeftLowerArmRotation(quaternion);
+    this->leftLowerArmTransform->setMatrix(this->connectorLeftUpperAndLowerArmTM * this->connectorLeftUpperAndLowerArmTMOrigin.inverted());
 }
 
 void Model::SetLeftLowerArmRotation(QQuaternion quaternion)
 {
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-    this->leftLowerArmTransform->setMatrix(this->connectorLeftUpperAndLowerArmTM * topCenterTM  * rotationMatrix * this->llaOffsetRM * this->offsetTM);
+    this->leftLowerArmTransform->setMatrix(this->connectorLeftUpperAndLowerArmTM * rotationMatrix * this->connectorLeftUpperAndLowerArmTMOrigin.inverted());
 }
 
 void Model::SetRightUpperArmRotation(QQuaternion quaternion)
 {
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-    this->rightUpperArmTransform->setMatrix(this->topCenterTM * rotationMatrix * this->ruaOffsetRM * this->offsetTM);
-    QVector4D connectorRightUpperAndLowerArm = rotationMatrix * this->connectorRightUpperAndLowerArmOrigin;
+    this->rightUpperArmTransform->setMatrix(this->connectorCenterAndRightUpperArmTM * rotationMatrix * this->connectorCenterAndRightUpperArmTMOrigin.inverted());
+    QVector4D connectorRightUpperAndLowerArm = this->connectorCenterAndRightUpperArmTM * rotationMatrix * this->connectorCenterAndRightUpperArmTMOrigin.inverted() * this->connectorRightUpperAndLowerArmOrigin;
     this->connectorRightUpperAndLowerArmTM = GetTranslationMatrix(connectorRightUpperAndLowerArm.x(),
                                                                  connectorRightUpperAndLowerArm.y(),
                                                                  connectorRightUpperAndLowerArm.z());
 
-    SetRightLowerArmRotation(quaternion);
+    this->rightLowerArmTransform->setMatrix(this->connectorRightUpperAndLowerArmTM * this->connectorRightUpperAndLowerArmTMOrigin.inverted());
 }
 
 void Model::SetRightLowerArmRotation(QQuaternion quaternion)
 {
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-    this->rightLowerArmTransform->setMatrix(this->connectorRightUpperAndLowerArmTM * topCenterTM  * rotationMatrix * this->rlaOffsetRM * this->offsetTM);
+    this->rightLowerArmTransform->setMatrix(this->connectorRightUpperAndLowerArmTM * rotationMatrix * this->connectorRightUpperAndLowerArmTMOrigin.inverted());
 }
 
 void Model::SetLeftUpperLegRotation(QQuaternion quaternion)
 {
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-    this->leftUpperLegTransform->setMatrix(this->bottomCenterTM * rotationMatrix * this->lulOffsetRM * this->offsetTM);
-    QVector4D connectorLeftUpperAndLowerLeg = rotationMatrix * this->connectorLeftUpperAndLowerLegOrigin;
+    this->leftUpperLegTransform->setMatrix(this->connectorCenterAndLeftUpperLegTM * rotationMatrix * this->connectorCenterAndLeftUpperLegTMOrigin.inverted());
+    QVector4D connectorLeftUpperAndLowerLeg = this->connectorCenterAndLeftUpperLegTM * rotationMatrix * this->connectorCenterAndLeftUpperLegTMOrigin.inverted() * this->connectorLeftUpperAndLowerLegOrigin;
     this->connectorLeftUpperAndLowerLegTM = GetTranslationMatrix(connectorLeftUpperAndLowerLeg.x(),
                                                                  connectorLeftUpperAndLowerLeg.y(),
                                                                  connectorLeftUpperAndLowerLeg.z());
 
-    SetLeftLowerLegRotation(quaternion);
+    this->leftLowerLegTransform->setMatrix(this->connectorLeftUpperAndLowerLegTM * this->connectorLeftUpperAndLowerLegTMOrigin.inverted());
 }
 
 void Model::SetLeftLowerLegRotation(QQuaternion quaternion)
 {
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-    this->leftLowerLegTransform->setMatrix(this->connectorLeftUpperAndLowerLegTM * this->bottomCenterTM  * rotationMatrix * this->lllOffsetRM * this->offsetTM);
+    this->leftLowerLegTransform->setMatrix(this->connectorLeftUpperAndLowerLegTM * rotationMatrix * this->connectorLeftUpperAndLowerLegTMOrigin.inverted());
 }
 
 void Model::SetRightUpperLegRotation(QQuaternion quaternion)
 {
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-    this->rightUpperLegTransform->setMatrix(this->bottomCenterTM * rotationMatrix * this->rulOffsetRM * this->offsetTM);
-    QVector4D connectorRightUpperAndLowerLeg = rotationMatrix * this->connectorRightUpperAndLowerLegOrigin;
+    this->rightUpperLegTransform->setMatrix(this->connectorCenterAndRightUpperLegTM * rotationMatrix * this->connectorCenterAndRightUpperLegTMOrigin.inverted());
+    QVector4D connectorRightUpperAndLowerLeg = this->connectorCenterAndRightUpperLegTM * rotationMatrix * this->connectorCenterAndRightUpperLegTMOrigin.inverted() * this->connectorRightUpperAndLowerLegOrigin;
     this->connectorRightUpperAndLowerLegTM = GetTranslationMatrix(connectorRightUpperAndLowerLeg.x(),
                                                                  connectorRightUpperAndLowerLeg.y(),
                                                                  connectorRightUpperAndLowerLeg.z());
 
-    SetRightLowerLegRotation(quaternion);
+    this->rightLowerLegTransform->setMatrix(this->connectorRightUpperAndLowerLegTM * this->connectorRightUpperAndLowerLegTMOrigin.inverted());
 }
 
 void Model::SetRightLowerLegRotation(QQuaternion quaternion)
 {
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-    this->rightLowerLegTransform->setMatrix(this->connectorRightUpperAndLowerLegTM * this->bottomCenterTM  * rotationMatrix * this->rllOffsetRM * this->offsetTM);
+    this->rightLowerLegTransform->setMatrix(this->connectorRightUpperAndLowerLegTM * rotationMatrix * this->connectorRightUpperAndLowerLegTMOrigin.inverted());
 }
 
 void Model::SetHeadRotation(QQuaternion quaternion)
 {
     QMatrix4x4 rotationMatrix = QMatrix4x4(quaternion.toRotationMatrix());
-    this->headTransform->setMatrix(this->topCenterTM * this->headTM * rotationMatrix * this->headOffsetTM);
+    this->headTransform->setMatrix(this->connectorHeadCenterTM * rotationMatrix * this->connectorHeadCenterTMOrigin.inverted());
 }

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svnpl/SDKProductLine/!svn/ver/21799/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/Device%20Control%20And%20Time%20Synchronization
+END
+DeviceControl.pro
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svnpl/SDKProductLine/!svn/ver/18743/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/Device%20Control%20And%20Time%20Synchronization/DeviceControl.pro
+END
+UserDefine.h
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/Device%20Control%20And%20Time%20Synchronization/UserDefine.h
+END
+dialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svnpl/SDKProductLine/!svn/ver/21799/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/Device%20Control%20And%20Time%20Synchronization/dialog.cpp
+END
+dialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/Device%20Control%20And%20Time%20Synchronization/dialog.h
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/Device%20Control%20And%20Time%20Synchronization/main.cpp
+END
+dhnetsdk.h
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/Device%20Control%20And%20Time%20Synchronization/dhnetsdk.h
+END
+dialog.ui
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/Device%20Control%20And%20Time%20Synchronization/dialog.ui
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svnpl/SDKProductLine/!svn/ver/16363/SDK3/NetSdk/Branches/D_2012.10.26_NetSDK_3.39.X/PublishDemo/linux_demo/Device%20Control%20And%20Time%20Synchronization/Makefile
+END

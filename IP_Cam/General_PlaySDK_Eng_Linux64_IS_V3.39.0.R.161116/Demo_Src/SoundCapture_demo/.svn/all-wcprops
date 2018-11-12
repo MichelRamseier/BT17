@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svnpl/SDKProductLine/!svn/ver/22598/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/SoundCapture_demo
+END
+main64.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svnpl/SDKProductLine/!svn/ver/22598/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/SoundCapture_demo/main64.cpp
+END
+SoundCapture_demo.pro
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/SoundCapture_demo/SoundCapture_demo.pro
+END
+soundcapture_demo.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/SoundCapture_demo/soundcapture_demo.cpp
+END
+soundcapture_demo.h
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/SoundCapture_demo/soundcapture_demo.h
+END
+dhplay.h
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/SoundCapture_demo/dhplay.h
+END
+main32.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/SoundCapture_demo/main32.cpp
+END
+soundcapture_demo.ui
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svnpl/SDKProductLine/!svn/ver/22571/SDK3/PlaySdk/PlaySdk_Gerneral/Branches/P_2016.03.18_PlaySdk_Gerneral_Base/Example/MacOS/SoundCapture_demo/soundcapture_demo.ui
+END

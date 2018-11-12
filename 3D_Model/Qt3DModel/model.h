@@ -49,33 +49,40 @@ private:
     Qt3DCore::QTransform *rightLowerLegTransform;
     Qt3DCore::QTransform *headTransform;
 
-    QVector4D topCenterOrigin;
-    QVector4D bottomCenterOrigin;
+    QVector4D connectorHeadCenterOrigin;
+    QVector4D connectorCenterAndLeftUpperArmOrigin;
+    QVector4D connectorCenterAndRightUpperArmOrigin;
+    QVector4D connectorCenterAndRightUpperLegOrigin;
+    QVector4D connectorCenterAndLeftUpperLegOrigin;
     QVector4D connectorLeftUpperAndLowerArmOrigin;
     QVector4D connectorRightUpperAndLowerArmOrigin;
     QVector4D connectorLeftUpperAndLowerLegOrigin;
     QVector4D connectorRightUpperAndLowerLegOrigin;
 
-    QMatrix4x4 luaOffsetRM;
-    QMatrix4x4 llaOffsetRM;
-    QMatrix4x4 ruaOffsetRM;
-    QMatrix4x4 rlaOffsetRM;
-    QMatrix4x4 lulOffsetRM;
-    QMatrix4x4 lllOffsetRM;
-    QMatrix4x4 rulOffsetRM;
-    QMatrix4x4 rllOffsetRM;
-    QMatrix4x4 offsetTM;
-    QMatrix4x4 headOffsetTM;
-    QMatrix4x4 headTM;
-    QMatrix4x4 topCenterTM;
-    QMatrix4x4 bottomCenterTM;
+    QMatrix4x4 connectorHeadCenterTM;
+    QMatrix4x4 connectorCenterAndRightUpperArmTM;
+    QMatrix4x4 connectorCenterAndLeftUpperArmTM;
+    QMatrix4x4 connectorCenterAndLeftUpperLegTM;
+    QMatrix4x4 connectorCenterAndRightUpperLegTM;
     QMatrix4x4 connectorLeftUpperAndLowerArmTM;
     QMatrix4x4 connectorRightUpperAndLowerArmTM;
     QMatrix4x4 connectorLeftUpperAndLowerLegTM;
     QMatrix4x4 connectorRightUpperAndLowerLegTM;
 
+    QMatrix4x4 connectorHeadCenterTMOrigin;
+    QMatrix4x4 connectorCenterAndLeftUpperArmTMOrigin;
+    QMatrix4x4 connectorCenterAndRightUpperArmTMOrigin;
+    QMatrix4x4 connectorRightUpperAndLowerArmTMOrigin;
+    QMatrix4x4 connectorLeftUpperAndLowerArmTMOrigin;
+    QMatrix4x4 connectorCenterAndLeftUpperLegTMOrigin;
+    QMatrix4x4 connectorCenterAndRightUpperLegTMOrigin;
+    QMatrix4x4 connectorRightUpperAndLowerLegTMOrigin;
+    QMatrix4x4 connectorLeftUpperAndLowerLegTMOrigin;
+
 private slots:
     QMatrix4x4 GetTranslationMatrix(float x, float y, float z);
+    QMatrix4x4 GetTranslationMatrix(QVector4D vector);
+    void Update();
 };
 
 #endif // MODEL_H
